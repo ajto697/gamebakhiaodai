@@ -1,0 +1,36 @@
+{
+  "id": "c1_m3",
+  "name": "Màn 3: Điện Thái Hòa - Thu Hồi Năm Chiếc Khuy Ngũ Thường",
+  "chapterId": "chuong_1",
+  "partId": "part_nguthan_khuy",
+  "partName": "Năm Chiếc Khuy Ngũ Thường",
+  "totalLength": 1150,
+  "spawn": { "x": 80, "y": 200 },
+  "platforms": [
+    { "x": 240, "y": 155, "width": 80, "height": 10 },
+    { "x": 400, "y": 125, "width": 80, "height": 10 },
+    { "x": 580, "y": 150, "width": 90, "height": 10 },
+    { "x": 750, "y": 130, "width": 85, "height": 10 },
+    { "x": 900, "y": 155, "width": 70, "height": 10 }
+  ],
+  "collectibles": [
+    { "type": "card", "cardId": "the_c1_m3_1", "x": 280, "y": 125 },
+    { "type": "heart", "x": 440, "y": 95 },
+    { "type": "card", "cardId": "the_c1_m3_2", "x": 620, "y": 120 },
+    { "type": "spool", "x": 790, "y": 100 }
+  ],
+  "enemies": [
+    { "type": "mob_khuy_meo", "name": "Quái Nút Bấm", "speech": "Khuy áo chỉ để cài chặt thôi!", "x": 320, "y": 200, "hp": 35 },
+    { "type": "mob_bui_mo", "name": "Bóng Bụi Cổ Tường", "speech": "Áo ngũ thân cài khuy bên trái mới đúng!", "x": 520, "y": 170, "hp": 35 },
+    { "type": "mob_chi_roi", "name": "Chỉ Rối Lạc Bước", "speech": "Khuy nào cũng như khuy nào!", "x": 710, "y": 200, "hp": 40 }
+  ],
+  "miniBoss": {
+    "type": "miniboss_khuy_lac",
+    "name": "Bóng Khuy Lạc",
+    "x": 1020,
+    "y": 200,
+    "hp": 150,
+    "misconception": "Năm hạt khuy áo gắn ngẫu nhiên từ cổ xuống chân để trang trí cho áo lấp lánh!",
+    "dialogue": "Nút nào cũng là nút! Ta sẽ xáo trộn vị trí của ngũ thường!"
+  }
+}

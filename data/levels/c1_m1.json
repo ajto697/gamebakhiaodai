@@ -1,0 +1,35 @@
+{
+  "id": "c1_m1",
+  "name": "Màn 1: Cung Điện Ngọ Môn - Tìm Thân Áo Năm Tà",
+  "chapterId": "chuong_1",
+  "partId": "part_nguthan_than",
+  "partName": "Thân Áo & Năm Tà",
+  "totalLength": 1050,
+  "spawn": { "x": 80, "y": 200 },
+  "platforms": [
+    { "x": 220, "y": 160, "width": 80, "height": 10 },
+    { "x": 380, "y": 135, "width": 90, "height": 10 },
+    { "x": 560, "y": 155, "width": 85, "height": 10 },
+    { "x": 720, "y": 135, "width": 90, "height": 10 }
+  ],
+  "collectibles": [
+    { "type": "card", "cardId": "the_c1_m1_1", "x": 250, "y": 130 },
+    { "type": "heart", "x": 420, "y": 105 },
+    { "type": "card", "cardId": "the_c1_m1_2", "x": 600, "y": 125 },
+    { "type": "spool", "x": 760, "y": 105 }
+  ],
+  "enemies": [
+    { "type": "mob_chi_roi", "name": "Quái Chỉ Rối", "speech": "Áo ngũ thân cũng giống áo tứ thân miền Bắc thôi mà!", "x": 300, "y": 200, "hp": 25 },
+    { "type": "mob_bui_mo", "name": "Bóng Bụi Mờ", "speech": "Thời xưa ai cũng mặc áo giống hệt nhau!", "x": 490, "y": 170, "hp": 30 },
+    { "type": "mob_chi_roi", "name": "Chỉ Rối Lông Nhông", "speech": "May áo lung tung chẳng có đạo lý gì!", "x": 670, "y": 200, "hp": 30 }
+  ],
+  "miniBoss": {
+    "type": "miniboss_vat_ao",
+    "name": "Bóng Mờ Vạt Áo",
+    "x": 920,
+    "y": 200,
+    "hp": 120,
+    "misconception": "Áo ngũ thân là chỉ có 4 thân may ghép lại, gọi là ngũ thân vì mặc vào 5 mùa!",
+    "dialogue": "Ha ha! Ngươi không biết tại sao lại gọi là NGŨ THÂN đâu! Áo này may lung tung thôi!"
+  }
+}

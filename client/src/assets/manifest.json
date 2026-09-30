@@ -1,0 +1,267 @@
+{
+  "version": "1.0.0",
+  "name": "Tầm Phục Ký Asset Manifest",
+  "basePath": "/assets/sprites/",
+  "sprites": [
+    {
+      "id": "hero_idle",
+      "file": "hero/hero_idle.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 2,
+      "fps": 4,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 14 }, "hand": { "x": 30, "y": 28 } },
+      "animations": { "default": [0, 1] }
+    },
+    {
+      "id": "hero_run",
+      "file": "hero/hero_run.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 4,
+      "fps": 10,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 14 }, "hand": { "x": 32, "y": 26 } },
+      "animations": { "default": [0, 1, 2, 3] }
+    },
+    {
+      "id": "hero_jump",
+      "file": "hero/hero_jump.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 2,
+      "fps": 6,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 12 }, "hand": { "x": 28, "y": 22 } },
+      "animations": { "rise": [0], "fall": [1] }
+    },
+    {
+      "id": "hero_attack_1",
+      "file": "hero/hero_attack_1.png",
+      "frameWidth": 64,
+      "frameHeight": 48,
+      "frameCount": 3,
+      "fps": 12,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 14 }, "hand": { "x": 46, "y": 26 } },
+      "animations": { "default": [0, 1, 2] }
+    },
+    {
+      "id": "hero_attack_2",
+      "file": "hero/hero_attack_2.png",
+      "frameWidth": 64,
+      "frameHeight": 48,
+      "frameCount": 3,
+      "fps": 12,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 14 }, "hand": { "x": 48, "y": 28 } },
+      "animations": { "default": [0, 1, 2] }
+    },
+    {
+      "id": "hero_attack_3",
+      "file": "hero/hero_attack_3.png",
+      "frameWidth": 64,
+      "frameHeight": 48,
+      "frameCount": 3,
+      "fps": 10,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 14 }, "hand": { "x": 52, "y": 26 } },
+      "animations": { "default": [0, 1, 2] }
+    },
+    {
+      "id": "hero_dodge",
+      "file": "hero/hero_dodge.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 18 }, "hand": { "x": 30, "y": 28 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "hero_hit",
+      "file": "hero/hero_hit.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 20, "y": 14 }, "hand": { "x": 20, "y": 26 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "hero_throw",
+      "file": "hero/hero_throw.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 2,
+      "fps": 8,
+      "anchor": { "foot": { "x": 24, "y": 46 }, "head": { "x": 24, "y": 14 }, "hand": { "x": 40, "y": 24 } },
+      "animations": { "default": [0, 1] }
+    },
+    {
+      "id": "mob_chi_roi",
+      "file": "mobs/mob_chi_roi.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "fps": 8,
+      "anchor": { "foot": { "x": 16, "y": 30 }, "head": { "x": 16, "y": 8 }, "hand": { "x": 16, "y": 16 } },
+      "animations": { "walk": [0, 1, 2, 3] }
+    },
+    {
+      "id": "mob_bui_mo",
+      "file": "mobs/mob_bui_mo.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "fps": 6,
+      "anchor": { "foot": { "x": 16, "y": 30 }, "head": { "x": 16, "y": 6 }, "hand": { "x": 16, "y": 16 } },
+      "animations": { "float": [0, 1, 2, 3] }
+    },
+    {
+      "id": "mob_khuy_meo",
+      "file": "mobs/mob_khuy_meo.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frameCount": 4,
+      "fps": 10,
+      "anchor": { "foot": { "x": 12, "y": 22 }, "head": { "x": 12, "y": 4 }, "hand": { "x": 12, "y": 12 } },
+      "animations": { "roll": [0, 1, 2, 3] }
+    },
+    {
+      "id": "mob_la_ua",
+      "file": "mobs/mob_la_ua.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "fps": 6,
+      "anchor": { "foot": { "x": 16, "y": 30 }, "head": { "x": 16, "y": 6 }, "hand": { "x": 16, "y": 16 } },
+      "animations": { "glide": [0, 1, 2, 3] }
+    },
+    {
+      "id": "miniboss_vat_ao",
+      "file": "bosses/miniboss_vat_ao.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 4,
+      "fps": 6,
+      "anchor": { "foot": { "x": 32, "y": 62 }, "head": { "x": 32, "y": 12 }, "hand": { "x": 48, "y": 32 } },
+      "animations": { "idle": [0, 1], "attack": [2, 3] }
+    },
+    {
+      "id": "miniboss_co_veo",
+      "file": "bosses/miniboss_co_veo.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 4,
+      "fps": 6,
+      "anchor": { "foot": { "x": 32, "y": 62 }, "head": { "x": 32, "y": 12 }, "hand": { "x": 48, "y": 32 } },
+      "animations": { "idle": [0, 1], "attack": [2, 3] }
+    },
+    {
+      "id": "miniboss_khuy_lac",
+      "file": "bosses/miniboss_khuy_lac.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 4,
+      "fps": 8,
+      "anchor": { "foot": { "x": 32, "y": 62 }, "head": { "x": 32, "y": 12 }, "hand": { "x": 32, "y": 32 } },
+      "animations": { "spin": [0, 1, 2, 3] }
+    },
+    {
+      "id": "miniboss_meo_vanh",
+      "file": "bosses/miniboss_meo_vanh.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 4,
+      "fps": 6,
+      "anchor": { "foot": { "x": 32, "y": 62 }, "head": { "x": 32, "y": 12 }, "hand": { "x": 48, "y": 32 } },
+      "animations": { "idle": [0, 1], "hop": [2, 3] }
+    },
+    {
+      "id": "boss_idle",
+      "file": "bosses/boss_lang_quen_idle.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frameCount": 4,
+      "fps": 4,
+      "anchor": { "foot": { "x": 80, "y": 156 }, "head": { "x": 80, "y": 30 }, "hand": { "x": 120, "y": 80 } },
+      "animations": { "breathe": [0, 1, 2, 3] }
+    },
+    {
+      "id": "boss_attack_threads",
+      "file": "bosses/boss_attack_threads.png",
+      "frameWidth": 192,
+      "frameHeight": 160,
+      "frameCount": 6,
+      "fps": 8,
+      "anchor": { "foot": { "x": 96, "y": 156 }, "head": { "x": 96, "y": 30 }, "hand": { "x": 140, "y": 80 } },
+      "animations": { "shoot": [0, 1, 2, 3, 4, 5] }
+    },
+    {
+      "id": "boss_slam",
+      "file": "bosses/boss_slam.png",
+      "frameWidth": 192,
+      "frameHeight": 192,
+      "frameCount": 6,
+      "fps": 10,
+      "anchor": { "foot": { "x": 96, "y": 188 }, "head": { "x": 96, "y": 40 }, "hand": { "x": 96, "y": 120 } },
+      "animations": { "smash": [0, 1, 2, 3, 4, 5] }
+    },
+    {
+      "id": "boss_vanish",
+      "file": "bosses/boss_vanish.png",
+      "frameWidth": 160,
+      "frameHeight": 160,
+      "frameCount": 8,
+      "fps": 8,
+      "anchor": { "foot": { "x": 80, "y": 156 }, "head": { "x": 80, "y": 30 }, "hand": { "x": 80, "y": 80 } },
+      "animations": { "dissolve": [0, 1, 2, 3, 4, 5, 6, 7] }
+    },
+    {
+      "id": "item_truth_card",
+      "file": "items/item_truth_card.png",
+      "frameWidth": 24,
+      "frameHeight": 32,
+      "frameCount": 4,
+      "fps": 6,
+      "anchor": { "foot": { "x": 12, "y": 30 }, "head": { "x": 12, "y": 4 }, "hand": { "x": 12, "y": 16 } },
+      "animations": { "shine": [0, 1, 2, 3] }
+    },
+    {
+      "id": "item_memory_heart",
+      "file": "items/item_memory_heart.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frameCount": 2,
+      "fps": 4,
+      "anchor": { "foot": { "x": 8, "y": 15 }, "head": { "x": 8, "y": 2 }, "hand": { "x": 8, "y": 8 } },
+      "animations": { "pulse": [0, 1] }
+    },
+    {
+      "id": "item_thread_spool",
+      "file": "items/item_thread_spool.png",
+      "frameWidth": 16,
+      "frameHeight": 16,
+      "frameCount": 2,
+      "fps": 4,
+      "anchor": { "foot": { "x": 8, "y": 15 }, "head": { "x": 8, "y": 2 }, "hand": { "x": 8, "y": 8 } },
+      "animations": { "glow": [0, 1] }
+    },
+    {
+      "id": "ui_panel_9slice",
+      "file": "ui/panel_9slice.png",
+      "frameWidth": 24,
+      "frameHeight": 24,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 12, "y": 24 }, "head": { "x": 12, "y": 0 }, "hand": { "x": 12, "y": 12 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "ui_npc_portrait",
+      "file": "ui/npc_artisan.png",
+      "frameWidth": 48,
+      "frameHeight": 48,
+      "frameCount": 2,
+      "fps": 2,
+      "anchor": { "foot": { "x": 24, "y": 48 }, "head": { "x": 24, "y": 10 }, "hand": { "x": 24, "y": 24 } },
+      "animations": { "talk": [0, 1] }
+    }
+  ]
+}

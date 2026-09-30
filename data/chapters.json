@@ -1,0 +1,500 @@
+[
+  {
+    "id": "chuong_1",
+    "ten_trang_phuc": "Áo Ngũ Thân Truyền Thống",
+    "vung": "Huế (Xứ Kinh Kỳ)",
+    "mo_ta": "Khám phá cấu tạo chuẩn mực của chiếc áo ngũ thân xứ Huế dưới triều Nguyễn, bảo vệ từng bộ phận trước Bóng Lãng Quên.",
+    "boi_canh": "Mái ngói Cung đình Đại Nội, rặng liễu Sông Hương, Ngọ Môn lộng gió hoàng hôn",
+    "so_manh_can_rap": 4,
+    "cac_man": [
+      {
+        "id": "c1_m1",
+        "ten_manh": "Mảnh 1: Thân Áo & Năm Tà",
+        "bo_phan_that": "Năm thân áo (Bốn thân ngoài che chở một thân con bên trong)",
+        "kien_thuc_id": "ao_ngu_than",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_chi_roi", "ten": "Quái Chỉ Rối", "loai": "len_roi", "mau": "amber", "hp": 25, "bong_bong": "Áo ngũ thân cũng giống áo tứ thân miền Bắc thôi mà!" },
+          { "id": "q_bui_mo", "ten": "Bóng Bụi Mờ", "loai": "bui_xam", "mau": "slate", "hp": 30, "bong_bong": "Thời xưa ai cũng mặc áo giống hệt nhau chẳng có ý nghĩa gì!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Mờ Vạt Áo",
+          "loai": "cuon_vai_ma",
+          "quan_niem_sai": "Áo ngũ thân là chỉ có 4 thân may ghép lại, gọi là ngũ thân vì mặc vào 5 mùa!",
+          "thoai": "Ha ha! Ngươi không biết tại sao lại gọi là NGŨ THÂN đâu! Áo này may lung tung thôi!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c1_m1_1",
+            "noi_dung": "Áo ngũ thân gồm 4 thân ngoài (tượng trưng tứ thân phụ mẫu) bao bọc thân con bên trong (người mặc).",
+            "dung": true,
+            "goi_y": "Chính xác! Đạo lý gia đình hiếu nghĩa sâu sắc của người Việt ta thể hiện ngay trên kết cấu 5 thân áo."
+          },
+          {
+            "id": "the_c1_m1_2",
+            "noi_dung": "Ngũ thân là áo may bằng 5 loại vải khác nhau để tránh nóng.",
+            "dung": false,
+            "goi_y": "Nghệ nhân mỉm cười: Không phải đâu con ơi! Năm thân áo nói về số vạt vải ghép thành theo cấu trúc che chở con cháu."
+          },
+          {
+            "id": "the_c1_m1_3",
+            "noi_dung": "Áo ngũ thân thực ra chỉ là cách gọi khác của áo bà ba Nam Bộ.",
+            "dung": false,
+            "goi_y": "Nghệ nhân nhắc: Áo bà ba xẻ giữa hai tà ngắn, còn áo ngũ thân vạt dài qua gối cài khuy bên phải xứ Huế."
+          }
+        ],
+        "doan_ke": "Ngươi đã cứu được Thân Áo! Bốn mảnh ngoài tượng trưng cho công ơn dưỡng dục của Tứ thân phụ mẫu: cha mẹ đẻ và cha mẹ chồng/vợ. Mảnh thứ năm nằm kín đáo bên trong như đứa con nhỏ được gia đình ôm ấp chở che."
+      },
+      {
+        "id": "c1_m2",
+        "ten_manh": "Mảnh 2: Cổ Đứng Ngay Ngắn",
+        "bo_phan_that": "Cổ áo đứng (Cổ lập lĩnh ôm khít cổ, CẦN KIỂM CHỨNG kích thước cụ thể)",
+        "kien_thuc_id": "ao_ngu_than",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_khuy_meo", "ten": "Quái Khuy Méo", "loai": "khuy_nhua", "mau": "teal", "hp": 30, "bong_bong": "Cổ áo đứng xưa kia khoét sâu hở ngực mới hợp thời!" },
+          { "id": "q_chi_roi_2", "ten": "Chỉ Rối Lông Nhông", "loai": "len_roi", "mau": "amber", "hp": 35, "bong_bong": "May cổ tròn thoải mái hơn, cổ đứng làm gì!" }
+        ],
+        "mini_boss": {
+          "ten": "Yêu Cổ Vẹo",
+          "loai": "dai_vai_xoan",
+          "quan_niem_sai": "Cổ áo ngũ thân phải khoét thật rộng và may cong như áo dạ hội phương Tây mới đúng điệu!",
+          "thoai": "Cổ áo thẳng đơ thế kia ai mà thở nổi? Phải bẻ cong nó đi chứ!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c1_m2_1",
+            "noi_dung": "Cổ áo ngũ thân là cổ đứng vuông góc hoặc lượn tròn kín đáo, giữ tư thế đầu thẳng trang nghiêm và phong thái đĩnh đạc.",
+            "dung": true,
+            "goi_y": "Thấu triệt! Cổ đứng lập lĩnh giữ cho người mặc luôn ngẩng cao đầu, tác phong chững chạc, khiêm cung."
+          },
+          {
+            "id": "the_c1_m2_2",
+            "noi_dung": "Cổ đứng áo ngũ thân được sao chép nguyên mẫu từ cổ cồn thời Victoria nước Anh.",
+            "dung": false,
+            "goi_y": "Nghệ nhân lắc đầu nhẹ: Cổ đứng đã có truyền thống lâu đời trong trang phục Đại Việt qua các sắc dụ cải cách thời chúa Nguyễn Vũ Vương."
+          },
+          {
+            "id": "the_c1_m2_3",
+            "noi_dung": "Người mặc áo ngũ thân có thể cắt phăng cổ áo để biến thành áo thun cổ tim.",
+            "dung": false,
+            "goi_y": "Nghệ nhân mỉm cười: Đó là cắt phá trang phục, cổ áo ngũ thân là linh hồn giữ phong thái chính trực của tiền nhân."
+          }
+        ],
+        "doan_ke": "Cổ Đứng đã trở lại vẻ tinh tươm! Đường viền cổ áo dựng đứng ngay ngắn ôm nhẹ lấy cần cổ, mỗi khi người xưa cất lời đều toát lên nét tôn nghiêm mà nhã nhặn."
+      },
+      {
+        "id": "c1_m3",
+        "ten_manh": "Mảnh 3: Năm Chiếc Khuy Ngũ Thường",
+        "bo_phan_that": "Bộ ngũ khuy (Năm hạt nút cài vạt phải, CẦN KIỂM CHỨNG chất liệu cụ thể)",
+        "kien_thuc_id": "ao_ngu_than",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_nut_gai", "ten": "Quái Nút Bấm Nhựa", "loai": "nut_nhua", "mau": "rose", "hp": 35, "bong_bong": "Khuy áo chỉ để cài chặt thôi, có gì mà ngũ thường với tam cương!" },
+          { "id": "q_bui_mo_3", "ten": "Quái Kim Gỉ", "loai": "kim_chi", "mau": "slate", "hp": 40, "bong_bong": "Áo ngũ thân cài khuy bên trái mới đúng mốt!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Khuy Lạc",
+          "loai": "chuoi_khuy_ma",
+          "quan_niem_sai": "Năm hạt khuy áo gắn ngẫu nhiên từ cổ xuống chân để trang trí cho áo lấp lánh!",
+          "thoai": "Nút nào cũng là nút! Ta sẽ xáo trộn vị trí của ngũ thường!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c1_m3_1",
+            "noi_dung": "Năm chiếc khuy tượng trưng cho 'Ngũ Thường' (Nhân - Nghĩa - Lễ - Trí - Tín) và năm mối quan hệ 'Ngũ Luân' răn dạy đạo lý làm người.",
+            "dung": true,
+            "goi_y": "Xuất sắc! Một khuy ở cổ, một khuy ở xương quai xanh, ba khuy ở sườn phải - mỗi hạt khuy nhắc nhở một phẩm hạnh làm người."
+          },
+          {
+            "id": "the_c1_m3_2",
+            "noi_dung": "Năm hạt khuy tượng trưng cho 5 loại quả trái cây nhiệt đới của miền Trung.",
+            "dung": false,
+            "goi_y": "Nghệ nhân cười hiền: Ngũ khuy mang ý nghĩa triết lý phương Đông sâu xa, gắn với rèn luyện đức hạnh con người."
+          },
+          {
+            "id": "the_c1_m3_3",
+            "noi_dung": "Khuy áo ngũ thân phải luôn cài bằng khóa kéo zipper hiện đại.",
+            "dung": false,
+            "goi_y": "Khóa kéo làm mất kết cấu truyền thống; khuy cài bên sườn phải mới tôn nét tinh xảo cổ phong."
+          }
+        ],
+        "doan_ke": "Năm hạt khuy tỏa sáng trên vạt áo! Nhân để yêu thương muôn loài, Nghĩa để sống ngay thẳng, Lễ để tôn kính tiền nhân, Trí để thấu hiểu vạn vật, Tín để giữ tròn lời hứa."
+      },
+      {
+        "id": "c1_m4",
+        "ten_manh": "Mảnh 4: Cánh Tay Chẽn",
+        "bo_phan_that": "Hai ống tay áo may nối từ vai buông dài dạng tay chẽn",
+        "kien_thuc_id": "ao_ngu_than",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_ong_loe", "ten": "Quái Rách Tả Tơi", "loai": "ong_quan_rach", "mau": "purple", "hp": 40, "bong_bong": "Mặc ngũ thân cộc tay xăm trổ cho mát!" },
+          { "id": "q_chi_roi_4", "ten": "Chỉ Dại Lăng Xăng", "loai": "len_roi", "mau": "amber", "hp": 45, "bong_bong": "Cắt phăng tay áo thành áo ba lỗ cho phong cách!" }
+        ],
+        "mini_boss": {
+          "ten": "Quỷ Ống Lệch",
+          "loai": "quan_loang_lo",
+          "quan_niem_sai": "Áo ngũ thân truyền thống không có tay áo, chỉ là áo ba lỗ khoét nách!",
+          "thoai": "Cắt cụt hết tay áo đi! Mặc tay dài vướng víu quá!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c1_m4_1",
+            "noi_dung": "Áo ngũ thân tay chẽn có ống tay thon gọn ôm vừa vặn cánh tay, cử động linh hoạt mà vẫn kín đáo tôn nghiêm.",
+            "dung": true,
+            "goi_y": "Chính là nó! Ống tay chẽn ôm dài kín đáo thể hiện tác phong đĩnh đạc, chỉn chu trong mọi nghi lễ."
+          },
+          {
+            "id": "the_c1_m4_2",
+            "noi_dung": "Tay áo ngũ thân truyền thống phải khoét nách sâu sát ngực như áo thể thao.",
+            "dung": false,
+            "goi_y": "Nghệ nhân mỉm cười: Áo ngũ thân luôn có tay áo che phủ kín đáo, không bao giờ khoét hở nách."
+          },
+          {
+            "id": "the_c1_m4_3",
+            "noi_dung": "Áo ngũ thân thời xưa được may bằng tay áo lông chim đại bàng.",
+            "dung": false,
+            "goi_y": "Tay áo được cắt may liền phom cùng chất vải dệt của thân áo, tạo nên sự đồng điệu trang nhã."
+          }
+        ],
+        "doan_ke": "Đôi tay áo chẽn vừa vặn và chỉn chu đã được khôi phục nguyên vẹn! Từng cử chỉ chào hỏi, cung kính giờ đây toát lên trọn vẹn nét đoan trang của người mặc."
+      }
+    ]
+  },
+  {
+    "id": "chuong_2",
+    "ten_trang_phuc": "Nón Bài Thơ Xứ Huế",
+    "vung": "Huế (Sông Hương - Núi Ngự)",
+    "mo_ta": "Thu thập từng nan tre vót tỉ mỉ và lớp lá nón phẳng mịn để soi sáng những vần thơ ẩn chứa tâm tình người xứ Huế.",
+    "boi_canh": "Bến đò Thừa Phủ, cầu Tràng Tiền sáu vài mười hai nhịp, rợp bóng phượng vĩ",
+    "so_manh_can_rap": 4,
+    "cac_man": [
+      {
+        "id": "c2_m1",
+        "ten_manh": "Mảnh 1: Các Vành Nan Tre",
+        "bo_phan_that": "Các vành nan nón uốn tròn từ tre già (CẦN KIỂM CHỨNG số lượng vành chuẩn)",
+        "kien_thuc_id": "non_bai_tho",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_nan_gay", "ten": "Quái Nan Gãy", "loai": "nan_tre", "mau": "amber", "hp": 35, "bong_bong": "Nón nào chẳng làm bằng nhôm đúc tròn xoe!" },
+          { "id": "q_bui_song", "ten": "Bóng Nước Đục", "loai": "bui_xam", "mau": "teal", "hp": 40, "bong_bong": "Vót nan bằng tre làm gì cho mất công xước tay!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Méo Vành",
+          "loai": "khung_nan_meo",
+          "quan_niem_sai": "Nón lá chỉ cần vài vành nan sắt uốn méo mó cho nhanh chứ không cần chuốt nan tròn đều!",
+          "thoai": "Uốn nan làm chi cho nhọc công! Càng ít vành càng nhẹ!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c2_m1_1",
+            "noi_dung": "Các vành nan nón được chuốt đều đặn từ cật tre già dẻo dai, uốn tròn xếp lớp tạo nên độ cong thanh thoát cho chiếc nón lá.",
+            "dung": true,
+            "goi_y": "Rất tài hoa! Từng vành nan tre vừa dẻo dai vừa định hình dáng nón thanh tú, cân đối."
+          },
+          {
+            "id": "the_c2_m1_2",
+            "noi_dung": "Vành nón được làm từ dây kẽm gỉ để giữ cho nón nặng không bị gió bay.",
+            "dung": false,
+            "goi_y": "Nghệ nhân giảng giải: Nan nón phải chuốt từ cật tre rừng già dẻo dai, chuốt tròn nhẵn bóng như tơ chỉ."
+          },
+          {
+            "id": "the_c2_m1_3",
+            "noi_dung": "Nón bài thơ thực chất là nón cối của phương Tây du nhập.",
+            "dung": false,
+            "goi_y": "Nón lá bài thơ là tinh hoa làng nghề truyền thống xứ Huế với nhiều thế hệ truyền đời."
+          }
+        ],
+        "doan_ke": "Các vành nan tre tròn vành vạnh đã vào khuôn! Từng vòng cung từ nhỏ đến lớn ôm lấy khoảng trời trong veo của xứ Huế mộng mơ."
+      },
+      {
+        "id": "c2_m2",
+        "ten_manh": "Mảnh 2: Lớp Lá Nón Phẳng Mịn",
+        "bo_phan_that": "Lớp lá nón (lá non sấy khô phẳng mịn, CẦN KIỂM CHỨNG kỹ thuật xử lý)",
+        "kien_thuc_id": "non_bai_tho",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_la_ua", "ten": "Quái Lá Khô Khốc", "loai": "la_ua", "mau": "yellow", "hp": 40, "bong_bong": "Lấy bạt ni-lông bọc nón cho rẻ và nhanh hỏng cũng mặc kệ!" },
+          { "id": "q_khoi_den", "ten": "Khói Than Đen", "loai": "bui_xam", "mau": "slate", "hp": 45, "bong_bong": "Lá nón càng dày càng tốt cho nặng đầu!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Tối Phủ Lá",
+          "loai": "mang_la_rach",
+          "quan_niem_sai": "Lá nón bài thơ chỉ là lá chuối khô lượm ngoài đường dán băng dính lại!",
+          "thoai": "Cần chi chọn lá, ủi lá! Lá rách cũng che được mưa nắng!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c2_m2_1",
+            "noi_dung": "Lá nón được tuyển chọn từ búp lá non, trải qua công đoạn sấy khô và ủi phẳng từng phiến trắng ngà mỏng mảnh.",
+            "dung": true,
+            "goi_y": "Chuẩn mực làng nghề! Búp lá non mỏng nhưng dai dẻo, soi ánh mặt trời tạo nên độ trong suốt diệu kỳ."
+          },
+          {
+            "id": "the_c2_m2_2",
+            "noi_dung": "Lá nón được quét sơn dầu xe máy để chống thấm tuyệt đối.",
+            "dung": false,
+            "goi_y": "Lá tự nhiên chằm bằng chỉ cước trong suốt, chỉ quét một lớp dầu bóng nhẹ để giữ màu tự nhiên."
+          },
+          {
+            "id": "the_c2_m2_3",
+            "noi_dung": "Lá nón lá Huế được làm từ giấy báo cũ ép lại.",
+            "dung": false,
+            "goi_y": "Nghệ nhân luôn trân quý từng phiến lá non mang về ủi phẳng cẩn trọng."
+          }
+        ],
+        "doan_ke": "Từng phiến lá trắng ngà xếp lớp đều đặn! Bề mặt nón phẳng phiu, sẵn sàng lưu giữ những hình bóng thơ mộng nhất của Cố đô."
+      },
+      {
+        "id": "c2_m3",
+        "ten_manh": "Mảnh 3: Câu Thơ Ẩn Sâu Lớp Lá",
+        "bo_phan_that": "Bài thơ và họa tiết cắt giấy đặt giữa hai lớp lá (CẦN KIỂM CHỨNG nội dung họa tiết)",
+        "kien_thuc_id": "non_bai_tho",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_muc_loang", "ten": "Quái Mực Bôi Nhọ", "loai": "muc_den", "mau": "indigo", "hp": 45, "bong_bong": "Thơ thẩn làm gì cho rách việc, viết chữ to tướng lên mặt nón khoe cho oai!" },
+          { "id": "q_la_ua_2", "ten": "Quái Rách Giữa", "loai": "la_ua", "mau": "yellow", "hp": 50, "bong_bong": "Nón bài thơ là người ta vẽ sơn xịt graffiti lên nón lá!" }
+        ],
+        "mini_boss": {
+          "ten": "Yêu Mất Hồn Thơ",
+          "loai": "cuon_giay_den",
+          "quan_niem_sai": "Nón bài thơ là lấy bút dạ quang xanh đỏ vẽ bậy cẩu thả lên ngoài mặt nón!",
+          "thoai": "Thơ ẩn làm sao ai thấy? Phải vẽ nguệch ngoạc ra ngoài mới đúng là Gen Z!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c2_m3_1",
+            "noi_dung": "Câu thơ và hoa văn được khéo léo chèn giữa 2 lớp lá; nhìn bình thường không thấy, chỉ khi soi lên ánh sáng trời mới hiện rõ.",
+            "dung": true,
+            "goi_y": "Đỉnh cao của sự tinh tế! Nét duyên thầm 'soi bóng trời thanh hiện bóng thơ', kín đáo mà rung động lòng người."
+          },
+          {
+            "id": "the_c2_m3_2",
+            "noi_dung": "Bài thơ trong nón bài thơ thực chất là một mã vạch QR để quét thanh toán tiền.",
+            "dung": false,
+            "goi_y": "Nghệ nhân bật cười: Đó là những vần thơ lục bát đằm thắm của người xưa gửi gắm tình yêu quê hương."
+          },
+          {
+            "id": "the_c2_m3_3",
+            "noi_dung": "Bên trong nón bài thơ chứa những bùa phép phong thủy cổ xưa.",
+            "dung": false,
+            "goi_y": "Hoàn toàn không có bùa chú, đó là nét đẹp thi ca và mỹ thuật tranh cắt giấy tài hoa của nghệ nhân xứ kinh kỳ."
+          }
+        ],
+        "doan_ke": "'Ai ra xứ Huế mộng mơ / Mua về chiếc nón bài thơ làm quà...' Khi giơ nón lên đón tia nắng chiều, hình bóng câu thơ lãng mạn hiện lên mờ ảo rung động tâm can."
+      },
+      {
+        "id": "c2_m4",
+        "ten_manh": "Mảnh 4: Quai Nón Lụa Duyên Thầm",
+        "bo_phan_that": "Quai nón bằng dải lụa mềm (CẦN KIỂM CHỨNG màu sắc truyền thống)",
+        "kien_thuc_id": "non_bai_tho",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_day_gai", "ten": "Quái Dây Thừng Rơm", "loai": "day_thung", "mau": "stone", "hp": 50, "bong_bong": "Cột nón bằng dây thừng gai xù xì buộc trâu mới chắc chắn!" },
+          { "id": "q_muc_loang_2", "ten": "Quái Giật Dây", "loai": "muc_den", "mau": "indigo", "hp": 55, "bong_bong": "Nón lá chẳng cần quai, cầm tay quạt gió là xong!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Thắt Nút Rối",
+          "loai": "nut_that_ma",
+          "quan_niem_sai": "Quai nón bài thơ xưa kia dùng dây thép gai hoặc dây xích sắt mới đúng tinh thần cổ kính!",
+          "thoai": "Buộc dây xích sắt vào cổ cho vừa! Dải lụa yếu đuối quá!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c2_m4_1",
+            "noi_dung": "Quai nón may bằng dải lụa mềm mại, nâng niu bờ má người đội và giữ nón êm ái trước gió bão.",
+            "dung": true,
+            "goi_y": "Tuyệt vời! Dải lụa buông lơi thắt nơ dưới cằm đã đi vào bao câu hò ruột thịt bên bờ sông Hương."
+          },
+          {
+            "id": "the_c2_m4_2",
+            "noi_dung": "Quai nón bài thơ thời xưa được làm bằng quai mũ bảo hiểm xe máy.",
+            "dung": false,
+            "goi_y": "Nghệ nhân mỉm cười: Thời xưa ông bà dùng lụa dệt êm dịu, không cọ xát vào làn da người đội."
+          },
+          {
+            "id": "the_c2_m4_3",
+            "noi_dung": "Quai nón không bao giờ được dùng màu tím vì người Huế kiêng kỵ màu tím.",
+            "dung": false,
+            "goi_y": "Màu tím chính là sắc màu biểu tượng gắn liền với nét đẹp văn hóa xứ Huế."
+          }
+        ],
+        "doan_ke": "Chiếc nón bài thơ hoàn mỹ đã hoàn thành! Dải lụa bay bay trong gió nhẹ, che nghiêng nụ cười e ấp bên nhịp cầu rêu phong."
+      }
+    ]
+  },
+  {
+    "id": "chuong_3",
+    "ten_trang_phuc": "Áo Dài Truyền Thống",
+    "vung": "Huế & Toàn quốc",
+    "mo_ta": "Kế thừa dòng chảy từ áo ngũ thân, áo dài hai tà thướt tha tôn vinh khí chất Việt Nam qua bao thăng trầm thời đại.",
+    "boi_canh": "Hàng phượng bay đường Lê Lợi, Trường Đồng Khánh cổ kính, bờ sông An Cựu",
+    "so_manh_can_rap": 4,
+    "cac_man": [
+      {
+        "id": "c3_m1",
+        "ten_manh": "Mảnh 1: Đôi Tà Bay Thướt Tha",
+        "bo_phan_that": "Tà trước và tà sau buông dài quá gối, xẻ eo nhẹ nhàng",
+        "kien_thuc_id": "ao_dai_truyen_thong",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_keo_rach", "ten": "Quái Kéo Cụt", "loai": "keo_ma", "mau": "rose", "hp": 50, "bong_bong": "Cắt tà áo dài ngắn lên đến nách mặc cho mát!" },
+          { "id": "q_gio_loc", "ten": "Bóng Gió Quẩn", "loai": "bui_xam", "mau": "sky", "hp": 55, "bong_bong": "Áo dài truyền thống vốn không có tà sau đâu!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Cắt Tà",
+          "loai": "keo_cat_ao",
+          "quan_niem_sai": "Áo dài truyền thống phải xẻ tà hở trọn cả hai bên mạn sườn và khoét lưng sâu mới chuẩn phong cách cổ truyền!",
+          "thoai": "Cắt ngắn hết tà áo đi! Áo dài làm gì cần hai tà thướt tha!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c3_m1_1",
+            "noi_dung": "Áo dài có hai tà trước sau buông thướt tha dài quá gối; đường xẻ eo vừa phải, bên trong kín đáo nhờ cạp quần lụa cao.",
+            "dung": true,
+            "goi_y": "Rất chính xác! Nét gợi cảm mà kín đáo, đoan trang của áo dài nằm ở độ rủ uyển chuyển của đôi tà không hở hang phản cảm."
+          },
+          {
+            "id": "the_c3_m1_2",
+            "noi_dung": "Áo dài truyền thống thực chất là chiếc áo mưa hai tà của lính viễn chinh.",
+            "dung": false,
+            "goi_y": "Áo dài Việt Nam phát triển trực tiếp từ áo ngũ thân lập lĩnh và tân thời hóa qua các thời kỳ."
+          },
+          {
+            "id": "the_c3_m1_3",
+            "noi_dung": "Áo dài bắt buộc phải may bằng vải bạt dán đề-can.",
+            "dung": false,
+            "goi_y": "Vải lụa tơ tằm, gấm, nhung mềm mại mới tạo nên độ rủ thướt tha bay bổng đặc trưng của áo dài."
+          }
+        ],
+        "doan_ke": "Đôi tà áo dài lượn sóng trong gió! Mỗi bước chân đi, tà áo khẽ lay động như nhịp sóng êm đềm của dòng Hương Giang buổi ban mai."
+      },
+      {
+        "id": "c3_m2",
+        "ten_manh": "Mảnh 2: Cổ Cao Thanh Tú",
+        "bo_phan_that": "Cổ áo cao uốn cong mềm mại, kín đáo thanh lịch (CẦN KIỂM CHỨNG chiều cao cụ thể)",
+        "kien_thuc_id": "ao_dai_truyen_thong",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_chi_bung", "ten": "Quái Chỉ Đứt", "loai": "len_roi", "mau": "amber", "hp": 55, "bong_bong": "Cổ áo khoét thật sâu xuống tận rốn mới quyến rũ!" },
+          { "id": "q_keo_rach_2", "ten": "Quái Bẻ Cổ", "loai": "keo_ma", "mau": "rose", "hp": 60, "bong_bong": "May cổ bẻ như sơ mi công sở mới là áo dài!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Trễ Cổ",
+          "loai": "co_ao_lech",
+          "quan_niem_sai": "Áo dài truyền thống cổ cao là để che giấu hình xăm chứ không có giá trị thẩm mỹ nào!",
+          "thoai": "Ta sẽ bẻ gãy cổ áo này! Kín cổng cao tường làm gì cho nóng!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c3_m2_1",
+            "noi_dung": "Cổ cao áo dài tôn vinh nét đài các, chiếc cổ cao thanh tú và phong thái đoan trang, tao nhã của người mặc.",
+            "dung": true,
+            "goi_y": "Chuẩn mực thẩm mỹ! Cổ áo cao vừa phải ôm khít bờ vai thon thả, kín đáo mà kiêu hãnh."
+          },
+          {
+            "id": "the_c3_m2_2",
+            "noi_dung": "Cổ áo dài bắt buộc phải gắn đinh tán gai góc của phong cách rock punk.",
+            "dung": false,
+            "goi_y": "Nghệ nhân mỉm cười: Bạn có thể phá cách, nhưng cổ áo dài vốn tượng trưng cho sự dịu dàng kín kẽ của văn hóa Việt."
+          },
+          {
+            "id": "the_c3_m2_3",
+            "noi_dung": "Cổ áo dài truyền thống chỉ cao đúng 1 milimet.",
+            "dung": false,
+            "goi_y": "Cổ áo truyền thống thường có chiều cao vừa vặn để vừa giữ dáng thẳng vừa dễ chịu khi cử động."
+          }
+        ],
+        "doan_ke": "Cổ áo đứng thanh tao đã hoàn chỉnh! Nét nghiêm trang dịu dàng như hoa sen nở rộ, giữ cho từng cử chỉ, nụ cười thêm muôn phần e ấp."
+      },
+      {
+        "id": "c3_m3",
+        "ten_manh": "Mảnh 3: Hàng Khuy Cài Duyên Dáng",
+        "bo_phan_that": "Hàng khuy cài uốn theo đường cong từ cổ qua sườn (CẦN KIỂM CHỨNG loại khuy)",
+        "kien_thuc_id": "ao_dai_truyen_thong",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_dinh_ri", "ten": "Quái Đinh Gỉ", "loai": "dinh_ri", "mau": "stone", "hp": 60, "bong_bong": "Dán keo dán sắt vào mép áo cho khỏi phải cài khuy!" },
+          { "id": "q_gio_loc_2", "ten": "Bóng Lỏng Lẻo", "loai": "bui_xam", "mau": "sky", "hp": 65, "bong_bong": "Áo dài thời xưa kéo khóa zip to đùng đằng trước ngực!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Bật Khuy",
+          "loai": "chuoi_khuy_bung",
+          "quan_niem_sai": "Hàng khuy cài từ cổ qua nách áo dài là thiết kế thừa thãi do thợ may lười biếng!",
+          "thoai": "Xé bung hết khuy ra! Cài khuy tỉ mỉ tốn thời gian quá!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c3_m3_1",
+            "noi_dung": "Hàng khuy cài uốn lượn từ chân cổ qua xương quai xanh rồi dọc eo giúp áo ôm khít đường nét cơ thể một cách tự nhiên và tinh tế.",
+            "dung": true,
+            "goi_y": "Thấu suốt tinh hoa! Đường cong của hàng khuy là một tuyệt tác của kỹ thuật cắt may thủ công Việt Nam."
+          },
+          {
+            "id": "the_c3_m3_2",
+            "noi_dung": "Hàng khuy áo dài thời xưa được dập bằng ghim bấm tài liệu giấy.",
+            "dung": false,
+            "goi_y": "Nghệ nhân lắc đầu cười: Người xưa tết nút bấm bằng vải hoặc dùng khuy cài nhỏ nhắn tinh xảo."
+          },
+          {
+            "id": "the_c3_m3_3",
+            "noi_dung": "Áo dài không bao giờ có khuy, phải mặc chui đầu như áo thun polo.",
+            "dung": false,
+            "goi_y": "Áo dài ôm vừa vặn cơ thể nên luôn có hàng khuy bên sườn mở được để người mặc mặc vào trang nhã mà không làm nhăn áo."
+          }
+        ],
+        "doan_ke": "Từng hạt khuy cài khép lại phẳng phiu! Vạt áo ôm khít bờ vai rồi xòe nhẹ xuống vòng eo thon nhỏ, tôn trọn vẹn nét duyên con gái Việt."
+      },
+      {
+        "id": "c3_m4",
+        "ten_manh": "Mảnh 4: Cánh Tay Áo Dài",
+        "bo_phan_that": "Hai ống tay áo may buông dài kín đáo che trọn cánh tay",
+        "kien_thuc_id": "ao_dai_truyen_thong",
+        "do_chac_chan": "can_xac_minh",
+        "quai_thuong": [
+          { "id": "q_toc_roi", "ten": "Quái Kéo Cắt Tay", "loai": "toc_roi", "mau": "zinc", "hp": 65, "bong_bong": "Cắt cụt tay áo dài thành áo cúp ngực hở hang mới là tân thời!" },
+          { "id": "q_dinh_ri_2", "ten": "Quái Rách Vai", "loai": "dinh_ri", "mau": "stone", "hp": 70, "bong_bong": "Áo dài truyền thống xưa kia làm gì có ống tay áo!" }
+        ],
+        "mini_boss": {
+          "ten": "Bóng Cắt Nách",
+          "loai": "khan_quan_lech",
+          "quan_niem_sai": "Áo dài truyền thống là áo không có tay, phải khoét sát nách để lộ vai mới đúng cổ phong!",
+          "thoai": "Cắt phăng đôi tay áo đi! Mặc tay dài chi cho kín cổng cao tường!",
+          "khien_hieu_lam": true
+        },
+        "cac_the": [
+          {
+            "id": "the_c3_m4_1",
+            "noi_dung": "Ống tay áo dài được may thon dài buông xuôi kín đáo từ vai đến cổ tay, giữ nét đoan trang thùy mị trong phong thái người Việt.",
+            "dung": true,
+            "goi_y": "Đạo lý sáng tỏ! Cánh tay áo dài kín đáo tôn lên vẻ đài các, trang nhã của tà áo truyền thống."
+          },
+          {
+            "id": "the_c3_m4_2",
+            "noi_dung": "Tay áo dài truyền thống thời xưa được may bằng ống sắt cứng đơ.",
+            "dung": false,
+            "goi_y": "Tay áo dài luôn dùng chất vải mềm mại, buông rủ êm ái theo từng cử chỉ bàn tay."
+          },
+          {
+            "id": "the_c3_m4_3",
+            "noi_dung": "Áo dài truyền thống bắt buộc phải cắt cụt tay áo thành áo hai dây.",
+            "dung": false,
+            "goi_y": "Cắt cụt tay áo làm mất đi vẻ kín đáo thanh lịch cốt lõi của áo dài truyền thống."
+          }
+        ],
+        "doan_ke": "Đôi tay áo dài thướt tha đã được phục hồi hoàn chỉnh! Cùng với hai tà áo buông bay kiêu hãnh, hình bóng người Việt Nam hiện lên sáng ngời vẻ đẹp dịu dàng và thanh lịch."
+      }
+    ]
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "id": "c1_m4",
+  "name": "Màn 4: Sân Rồng Lăng Tự Đức - Cánh Tay Chẽn",
+  "chapterId": "chuong_1",
+  "partId": "part_nguthan_tay",
+  "partName": "Cánh Tay Chẽn",
+  "totalLength": 1200,
+  "spawn": { "x": 80, "y": 200 },
+  "platforms": [
+    { "x": 220, "y": 160, "width": 80, "height": 10 },
+    { "x": 370, "y": 130, "width": 85, "height": 10 },
+    { "x": 540, "y": 150, "width": 90, "height": 10 },
+    { "x": 720, "y": 125, "width": 85, "height": 10 },
+    { "x": 890, "y": 155, "width": 80, "height": 10 }
+  ],
+  "collectibles": [
+    { "type": "card", "cardId": "the_c1_m4_1", "x": 260, "y": 130 },
+    { "type": "spool", "x": 410, "y": 100 },
+    { "type": "card", "cardId": "the_c1_m4_2", "x": 580, "y": 120 },
+    { "type": "heart", "x": 760, "y": 95 }
+  ],
+  "enemies": [
+    { "type": "mob_chi_roi", "name": "Chỉ Dại Lăng Xăng", "speech": "Mặc ngũ thân cộc tay xăm trổ cho mát!", "x": 310, "y": 200, "hp": 40 },
+    { "type": "mob_khuy_meo", "name": "Quái Rách Tả Tơi", "speech": "Mặc quần đùi bò rách mới ngầu!", "x": 500, "y": 200, "hp": 40 },
+    { "type": "mob_bui_mo", "name": "Bụi Mờ Rêu Đá", "speech": "Quần lụa dài quét đất vướng víu!", "x": 690, "y": 165, "hp": 45 }
+  ],
+  "miniBoss": {
+    "type": "miniboss_vat_ao",
+    "name": "Quỷ Ống Lệch",
+    "x": 1060,
+    "y": 200,
+    "hp": 160,
+    "misconception": "Áo ngũ thân truyền thống phải mặc kèm quần short jean siêu ngắn để khoe chân dài tại chốn lăng tẩm!",
+    "dialogue": "Mặc quần lụa dài quét đất vướng víu! Cắt ngắn thành quần đùi hết cho ta!"
+  }
+}

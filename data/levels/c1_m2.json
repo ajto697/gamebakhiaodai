@@ -1,0 +1,36 @@
+{
+  "id": "c1_m2",
+  "name": "Màn 2: Rặng Liễu Sông Hương - Giải Cứu Cổ Đứng",
+  "chapterId": "chuong_1",
+  "partId": "part_nguthan_co",
+  "partName": "Cổ Đứng Ngay Ngắn (Lập Lĩnh)",
+  "totalLength": 1100,
+  "spawn": { "x": 80, "y": 200 },
+  "platforms": [
+    { "x": 200, "y": 160, "width": 75, "height": 10 },
+    { "x": 340, "y": 130, "width": 85, "height": 10 },
+    { "x": 500, "y": 150, "width": 90, "height": 10 },
+    { "x": 680, "y": 130, "width": 80, "height": 10 },
+    { "x": 820, "y": 155, "width": 75, "height": 10 }
+  ],
+  "collectibles": [
+    { "type": "card", "cardId": "the_c1_m2_1", "x": 240, "y": 130 },
+    { "type": "spool", "x": 380, "y": 100 },
+    { "type": "card", "cardId": "the_c1_m2_2", "x": 540, "y": 120 },
+    { "type": "heart", "x": 720, "y": 100 }
+  ],
+  "enemies": [
+    { "type": "mob_khuy_meo", "name": "Quái Khuy Méo", "speech": "Cổ áo khoét sâu mới hợp thời!", "x": 280, "y": 200, "hp": 30 },
+    { "type": "mob_chi_roi", "name": "Chỉ Rối Lông Nhông", "speech": "May cổ tròn cho thoáng mát!", "x": 450, "y": 200, "hp": 35 },
+    { "type": "mob_bui_mo", "name": "Bụi Mờ Bến Đò", "speech": "Cổ đứng làm gì cho vướng cổ!", "x": 640, "y": 165, "hp": 30 }
+  ],
+  "miniBoss": {
+    "type": "miniboss_co_veo",
+    "name": "Yêu Cổ Vẹo",
+    "x": 960,
+    "y": 200,
+    "hp": 135,
+    "misconception": "Cổ áo ngũ thân phải khoét thật rộng và may cong như áo dạ hội phương Tây mới đúng điệu!",
+    "dialogue": "Cổ áo thẳng đơ thế kia ai mà thở nổi? Phải bẻ cong nó đi chứ!"
+  }
+}

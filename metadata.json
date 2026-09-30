@@ -1,0 +1,6 @@
+{
+  "name": "Tầm Phục Ký - Việt Phục Remix",
+  "description": "Game pixel art 2D hành động beat 'em up & platformer kết hợp văn hoá Việt phục Remix và khám phá di sản trang phục truyền thống.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

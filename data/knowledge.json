@@ -1,0 +1,145 @@
+[
+  {
+    "id": "ao_ngu_than",
+    "ten": "Áo Ngũ Thân",
+    "vung": "Huế / Toàn quốc (Thời Nguyễn)",
+    "mo_ta_ngan": "Áo truyền thống gồm 5 thân (4 thân ngoài tượng trưng tứ thân phụ mẫu, 1 thân con bên trong tượng trưng cho người mặc), cổ đứng kín đáo, cài khuy bên phải.",
+    "y_nghia": "Ngũ thân tượng trưng cho đạo lý làm người: Tứ thân phụ mẫu che chở cho thân con; 5 khuy tượng trưng cho Ngũ thường (Nhân - Nghĩa - Lễ - Trí - Tín) hoặc Ngũ luân.",
+    "boi_canh_su_dung": "Nghi lễ xưa, lễ cưới truyền thống, ngày Tết, nghi lễ trang trọng, lễ hội văn hóa di sản.",
+    "luu_y_phoi": "Mặc cùng quần lụa ống rộng; phối với khăn đóng; giày tây hoặc guốc mộc; tránh mặc với quần short hoặc váy ngắn gây mất phom dáng tôn nghiêm.",
+    "nguon": "CẦN KIỂM CHỨNG: [tài liệu nghiên cứu trang phục thời Nguyễn và tư liệu hiện vật bảo tàng]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "ao_dai_truyen_thong",
+    "ten": "Áo Dài Truyền Thống",
+    "vung": "Toàn quốc / Huế",
+    "mo_ta_ngan": "Trang phục phát triển từ áo ngũ thân, gồm 2 tà trước và sau buông dài, xẻ từ eo, cổ cao hoặc cổ đứng kín đáo.",
+    "y_nghia": "Tôn vinh vẻ đẹp thanh lịch, kín đáo nhưng uyển chuyển của người phụ nữ và nam giới Việt Nam; biểu tượng văn hóa dân tộc.",
+    "boi_canh_su_dung": "Lễ kỷ yếu, đám cưới, lễ hội, trường học, di tích lịch sử, ngày lễ Tết.",
+    "luu_y_phoi": "Đi kèm quần lụa suông rộng; có thể phối với nón lá, guốc mộc; khi phối đồ cách tân nên giữ nét đoan trang nơi tôn nghiêm.",
+    "nguon": "CẦN KIỂM CHỨNG: [tài liệu lịch sử trang phục truyền thống]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "khan_dong",
+    "ten": "Khăn Đóng (Khăn Vấn)",
+    "vung": "Huế / Miền Trung & Miền Bắc",
+    "mo_ta_ngan": "Khăn quấn nếp phía trước trán, dùng đội đầu gọn gàng khi mặc trang phục truyền thống.",
+    "y_nghia": "Nếp khăn thể hiện sự nghiêm cẩn, lấy đạo đức làm gốc; giữ cho đầu tóc và phong thái luôn trang nghiêm, chỉn chu.",
+    "boi_canh_su_dung": "Đi cùng áo ngũ thân hoặc áo dài truyền thống trong tế lễ, cưới hỏi, lễ hội truyền thống.",
+    "luu_y_phoi": "Chọn khăn vừa cỡ đầu; khăn nam thường có nếp xếp nghiêng mạnh mẽ, khăn nữ thường quấn đều hoặc bọc vải trang nhã.",
+    "nguon": "CẦN KIỂM CHỨNG: [giáo trình và tư liệu trang phục cổ truyền]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "non_bai_tho",
+    "ten": "Nón Bài Thơ",
+    "vung": "Huế (xứ Kinh kỳ)",
+    "mo_ta_ngan": "Chiếc nón lá đặc trưng của Huế có chèn câu thơ và họa tiết phong cảnh giữa hai lớp lá, soi lên ánh sáng mới thấy.",
+    "y_nghia": "Thể hiện tâm hồn thi vị, kín đáo, sâu lắng và nét duyên thầm e ấp của người xứ Huế.",
+    "boi_canh_su_dung": "Dạo phố, chụp ảnh áo dài, lễ hội truyền thống, che mưa nắng hàng ngày.",
+    "luu_y_phoi": "Hòa hợp khi phối cùng áo dài, áo ngũ thân; quai nón bằng dải lụa mềm mại.",
+    "nguon": "CẦN KIỂM CHỨNG: [tư liệu làng nghề làm nón truyền thống xứ Huế]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "ao_ba_ba",
+    "ten": "Áo Bà Ba",
+    "vung": "Nam Bộ (Đồng bằng sông Cửu Long)",
+    "mo_ta_ngan": "Áo cổ tròn hoặc cổ tim xẻ giữa, cài khuy, vạt ngắn ngang hông xẻ hai bên tà, có túi phía trước vạt dưới.",
+    "y_nghia": "Biểu tượng của tính cách chân chất, hồn hậu, phóng khoáng, lao động cần cù của người dân sông nước phương Nam.",
+    "boi_canh_su_dung": "Lao động sinh hoạt thường nhật, văn nghệ truyền thống, du lịch miệt vườn, lễ hội sông nước.",
+    "luu_y_phoi": "Mặc cùng quần lụa đen rộng, quàng khăn rằn, mang guốc mộc hoặc dép nhẹ; không nhầm lẫn với trang phục cung đình.",
+    "nguon": "CẦN KIỂM CHỨNG: [tài liệu nghiên cứu văn hóa dân gian Nam Bộ]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "ao_tu_than",
+    "ten": "Áo Tứ Thân",
+    "vung": "Bắc Bộ (Đồng bằng sông Hồng)",
+    "mo_ta_ngan": "Áo dài gồm 4 vạt (2 vạt sau may liền sống áo, 2 vạt trước buông thả để thắt mối), mặc ngoài yếm và áo cánh mỏng.",
+    "y_nghia": "Bốn vạt áo tượng trưng cho tứ thân phụ mẫu (cha mẹ mình và cha mẹ người); vạt trước buộc lại tượng trưng cho tình nghĩa gắn bó.",
+    "boi_canh_su_dung": "Lễ hội dân gian, hát dân ca Quan họ, hội làng truyền thống Bắc Bộ.",
+    "luu_y_phoi": "Phối cùng yếm, thắt lưng lụa, khăn trùm đầu và nón quai thao; không mang đặc trưng trang phục cung đình Huế.",
+    "nguon": "CẦN KIỂM CHỨNG: [tài liệu nghiên cứu dân tộc học và trang phục dân gian]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "khan_mo_qua",
+    "ten": "Khăn Mỏ Quạ",
+    "vung": "Bắc Bộ",
+    "mo_ta_ngan": "Khăn vuông tối màu gấp chéo tam giác, trùm lên đầu rồi thắt nếp chìa ra trước trán.",
+    "y_nghia": "Giữ nếp tóc gọn gàng trong lao động và tôn vinh nét mặt phúc hậu của người phụ nữ nông thôn Bắc Bộ xưa.",
+    "boi_canh_su_dung": "Đi liền với áo tứ thân trong lễ hội dân gian và sinh hoạt thôn quê xưa.",
+    "luu_y_phoi": "Là nét văn hóa đặc thù Bắc Bộ; khi phối đồ cần hiểu rõ xuất xứ vùng miền, tránh gán ghép là phục sức cung đình.",
+    "nguon": "CẦN KIỂM CHỨNG: [tài liệu phong tục tập quán làng quê Bắc Bộ]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "non_quai_thao",
+    "ten": "Nón Quai Thao (Nón Ba Tầm)",
+    "vung": "Bắc Bộ",
+    "mo_ta_ngan": "Nón hình đĩa tròn phẳng, đường kính rộng che nắng, mép uốn cong, quai bằng sợi dệt hoặc lụa.",
+    "y_nghia": "Vật phẩm duyên dáng gắn liền với các làn điệu dân ca Quan họ, tượng trưng cho nét đẹp tròn đầy, thanh lịch.",
+    "boi_canh_su_dung": "Hát dân ca Quan họ, lễ hội mùa xuân truyền thống Bắc Bộ.",
+    "luu_y_phoi": "Đi với áo tứ thân, áo yếm; không dùng thay thế cho nón bài thơ trong bối cảnh di tích cung đình Huế.",
+    "nguon": "CẦN KIỂM CHỨNG: [tư liệu hiện vật bảo tàng trang phục phụ nữ]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "guoc_moc",
+    "ten": "Guốc Mộc",
+    "vung": "Toàn quốc (Bắc, Trung, Nam đều có kiểu riêng)",
+    "mo_ta_ngan": "Giày dép truyền thống làm từ gỗ đẽo mộc mạc, quai da hoặc quai vải êm ái.",
+    "y_nghia": "Âm thanh gõ nhịp thân quen của nếp sống xưa; phản ánh sự mộc mạc, gần gũi với thiên nhiên trong sinh hoạt người Việt.",
+    "boi_canh_su_dung": "Phối với áo dài, áo ngũ thân, áo bà ba trong sinh hoạt, dạo phố cổ.",
+    "luu_y_phoi": "Hợp với nhiều loại trang phục truyền thống; đi lại nhẹ nhàng, lịch sự ở chốn tôn nghiêm.",
+    "nguon": "CẦN KIỂM CHỨNG: [tư liệu làng nghề làm guốc mộc truyền thống]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "quan_lua_ong_rong",
+    "ten": "Quần Lụa Ống Rộng",
+    "vung": "Toàn quốc",
+    "mo_ta_ngan": "Quần may bằng chất liệu lụa truyền thống, ống suông rộng buông rủ, cạp buộc dây hoặc đai lưng.",
+    "y_nghia": "Tạo sự thanh thoát khi bước đi, tôn lên dáng dấp bay bổng của áo dài và áo ngũ thân.",
+    "boi_canh_su_dung": "Trang phục mặc kèm của áo ngũ thân, áo dài truyền thống.",
+    "luu_y_phoi": "Màu trắng hoặc màu đen là dạng phổ biến; tránh mặc quần short ngắn cũn cỡn làm phá hỏng sự kín đáo của trang phục.",
+    "nguon": "CẦN KIỂM CHỨNG: [tư liệu nghề dệt lụa truyền thống]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "tho_cam_dan_toc",
+    "ten": "Thổ Cẩm Các Dân Tộc",
+    "vung": "Tây Bắc, Tây Nguyên, vùng cao",
+    "mo_ta_ngan": "Vải dệt thủ công với hoa văn hình học, thiên nhiên mang bản sắc riêng của từng dân tộc anh em.",
+    "y_nghia": "Mỗi hoa văn phản ánh thế giới quan, câu chuyện văn hóa cộng đồng và bàn tay khéo léo của người dệt vải.",
+    "boi_canh_su_dung": "Trang phục truyền thống bản địa, ngày hội giao lưu văn hóa, ứng dụng mỹ thuật đương đại.",
+    "luu_y_phoi": "Khi ứng dụng phối đồ cần tôn trọng ý nghĩa hoa văn, tránh sử dụng các mô-típ mang tính nghi lễ tâm linh một cách tùy tiện.",
+    "nguon": "CẦN KIỂM CHỨNG: [tài liệu nghiên cứu hoa văn thổ cẩm các dân tộc]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "quy_uoc_di_tich",
+    "ten": "Quy Ước Ăn Mặc Tại Di Tích Lịch Sử",
+    "vung": "Đại Nội Huế, Đền Hùng, Văn Miếu, Lăng Tẩm, Đền Chùa",
+    "mo_ta_ngan": "Nguyên tắc văn hóa ứng xử: y phục trang nghiêm, kín đáo, phủ vai và dài quá đầu gối; giữ thái độ tôn kính di sản tiền nhân.",
+    "y_nghia": "Thể hiện lòng biết ơn với tiền nhân và tôn trọng giá trị tâm linh - lịch sử của di tích.",
+    "boi_canh_su_dung": "Khi tham quan, chụp ảnh kỷ niệm tại di tích lịch sử, đền đài, lăng tẩm, chùa chiền.",
+    "luu_y_phoi": "Tránh mặc áo hai dây, áo cúp ngực, quần short ngắn khi vào nơi tôn nghiêm; mặc cổ phục cần chỉnh tề tà áo.",
+    "nguon": "CẦN KIỂM CHỨNG: [quy định và quy chế tham quan di tích lịch sử]",
+    "do_chac_chan": "can_xac_minh"
+  },
+  {
+    "id": "mau_sac_hoang_gia_hue",
+    "ten": "Quy Ước Màu Sắc Hoàng Gia Triều Nguyễn",
+    "vung": "Huế (Cung đình thời Nguyễn)",
+    "mo_ta_ngan": "Hệ thống màu sắc phẩm phục phân định theo thứ bậc triều đình trong các nghi lễ xưa.",
+    "y_nghia": "Phản ánh trật tự lễ nghi và quan niệm thẩm mỹ cung đình thời phong kiến.",
+    "boi_canh_su_dung": "Không gian cung đình xưa, hoạt động tái hiện lễ hội truyền thống, phục dựng lịch sử.",
+    "luu_y_phoi": "Khi sáng tạo trang phục dạo phố di tích, người mặc có thể phối màu đương đại nhưng cần hiểu màu vàng tươi từng gắn với vị trí cao nhất trong triều đình.",
+    "nguon": "CẦN KIỂM CHỨNG: [châu bản và thư tịch cổ triều Nguyễn]",
+    "do_chac_chan": "can_xac_minh"
+  }
+]
