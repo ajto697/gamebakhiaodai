@@ -16,6 +16,7 @@ import { PhysicsEngine, RectAABB } from '../../engine/physics.ts';
 export type PlayerState =
   | 'idle'
   | 'run'
+  | 'crouch'
   | 'jump'
   | 'fall'
   | 'attack_1'
@@ -52,6 +53,11 @@ export class Player {
   public jumpForce = -7.5;
   public isGrounded = true;
 
+  // Thời gian đệm nhảy (Jump Buffer & Coyote Time)
+  public coyoteTimer = 0;
+  public jumpBufferTimer = 0;
+  public dropTimer = 0;
+
   // Chỉ số nhân vật
   public kyUcHearts = 5; // Sinh lực Ký Ức (5 tim)
   public maxHearts = 5;
@@ -62,10 +68,18 @@ export class Player {
   public comboStep = 0; // 0: không đánh, 1: đòn 1, 2: đòn 2, 3: đòn 3
   public comboBuffer = false;
   public comboTimer = 0;
+  public currentAttackId = 0;
+  public hasHitEnemyThisAttack = false; // Mỗi đòn trong cùng một cú đánh chỉ tính một lần
 
-  // Hệ thống Né tránh (Dodge)
+  // Hệ thống Né tránh (Dodge) & Dư ảnh (Afterimage)
   public dodgeCooldown = 0;
   public invincibleTimer = 0;
+  public flashTimer = 0; // Chớp trắng 2 khung khi bị trúng đòn
+  public afterimages: Array<{ x: number; y: number; alpha: number; flipX: boolean }> = [];
+
+  // Co giãn nhân vật khi nhảy / hạ cánh (Squash and Stretch 2-3 khung)
+  public squashStretchX = 1.0;
+  public squashStretchY = 1.0;
 
   // Danh sách phi tiêu kim chỉ đang bay
   public projectiles: Projectile[] = [];
@@ -74,8 +88,17 @@ export class Player {
 
   /**
    * Lấy hộp va chạm nhận sát thương (Hurtbox)
+   * Khi cúi người (crouch): Hộp va chạm giảm một nửa chiều cao để né đòn
    */
   public getHurtbox(): RectAABB {
+    if (this.state === 'crouch') {
+      return {
+        x: this.x - 12,
+        y: this.y - 24,
+        width: 24,
+        height: 24,
+      };
+    }
     return {
       x: this.x - 12,
       y: this.y - 42,
@@ -86,19 +109,20 @@ export class Player {
 
   /**
    * Lấy hộp va chạm gây sát thương của đòn đánh hiện tại (Hitbox)
+   * Tầm vươn thoải mái, bao phủ cả tầm đứng đánh và nhảy đánh
    */
   public getAttackHitbox(): RectAABB | null {
     if (this.state === 'attack_1') {
-      const reachX = this.flipX ? this.x - 36 : this.x + 8;
-      return { x: reachX, y: this.y - 32, width: 28, height: 20 };
+      const reachX = this.flipX ? this.x - 44 : this.x + 4;
+      return { x: reachX, y: this.y - 36, width: 44, height: 36 };
     }
     if (this.state === 'attack_2') {
-      const reachX = this.flipX ? this.x - 40 : this.x + 8;
-      return { x: reachX, y: this.y - 25, width: 32, height: 22 };
+      const reachX = this.flipX ? this.x - 48 : this.x + 4;
+      return { x: reachX, y: this.y - 34, width: 48, height: 36 };
     }
     if (this.state === 'attack_3') {
-      const reachX = this.flipX ? this.x - 46 : this.x + 8;
-      return { x: reachX, y: this.y - 35, width: 38, height: 30 };
+      const reachX = this.flipX ? this.x - 56 : this.x + 4;
+      return { x: reachX, y: this.y - 42, width: 56, height: 42 };
     }
     return null;
   }
@@ -115,12 +139,44 @@ export class Player {
 
     if (this.dodgeCooldown > 0) this.dodgeCooldown--;
     if (this.invincibleTimer > 0) this.invincibleTimer--;
+    if (this.flashTimer > 0) this.flashTimer--;
+    if (this.coyoteTimer > 0) this.coyoteTimer--;
+    if (this.jumpBufferTimer > 0) this.jumpBufferTimer--;
+    if (this.dropTimer > 0) this.dropTimer--;
+
+    // Suy giảm dần độ co giãn nhân vật (Squash and Stretch về 1.0)
+    this.squashStretchX += (1.0 - this.squashStretchX) * 0.35;
+    this.squashStretchY += (1.0 - this.squashStretchY) * 0.35;
+
+    // Suy giảm ảnh mờ (Afterimages) khi né
+    for (let i = this.afterimages.length - 1; i >= 0; i--) {
+      this.afterimages[i].alpha *= 0.74;
+      if (this.afterimages[i].alpha < 0.04) {
+        this.afterimages.splice(i, 1);
+      }
+    }
+
+    // Nhận diện lệnh Nhảy (Phím W, Space, Mũi tên Lên, hoặc Nút Nhảy cảm ứng)
+    const wantsJump = input.isPressed('jump') || input.isPressed('up');
+    // Nhận diện lệnh Cúi (Phím S, Mũi tên Xuống, hoặc Nút Cúi cảm ứng)
+    const wantsCrouch = input.isDown('crouch') || input.isDown('down');
+
+    // Nạp đệm lệnh nhảy (Jump buffer 8 frames)
+    if (wantsJump) {
+      this.jumpBufferTimer = 8;
+    }
 
     // 1. Xử lý Trạng thái Đang Né (Dodge)
     if (this.state === 'dodge') {
       this.vx = (this.flipX ? -1 : 1) * 4.8;
-      // Sinh vệt dư ảnh lụa
+      // Sinh ảnh mờ (Afterimage) và vệt chỉ lụa
       if (this.stateTime % 2 === 0) {
+        this.afterimages.push({
+          x: this.x,
+          y: this.y,
+          alpha: 0.45,
+          flipX: this.flipX,
+        });
         particles.spawnThreadTrail(this.x, this.y - 20, '#f7af34');
       }
       if (this.stateTime > 12) {
@@ -147,6 +203,7 @@ export class Player {
           this.state = 'idle';
           this.comboStep = 0;
           this.comboBuffer = false;
+          this.hasHitEnemyThisAttack = false;
         }
       }
     }
@@ -157,36 +214,88 @@ export class Player {
         this.state = 'idle';
       }
     }
-    // 4. Xử lý Bị Đánh (Hurt / Knockback)
+    // 4. Xử lý Bị Đánh (Hurt / Knockback có giảm tốc)
     else if (this.state === 'hurt') {
       this.vx *= 0.88;
       if (this.stateTime > 15) {
         this.state = 'idle';
       }
     }
-    // 5. Trạng thái Di Chuyển Bình Thường (Idle, Run, Jump, Fall)
+    // 5. Trạng thái Di Chuyển Bình Thường (Idle, Run, Crouch, Jump, Fall)
     else {
-      // Di chuyển trái / phải
-      if (input.isDown('left')) {
-        this.vx = -this.speed;
-        this.flipX = true;
-        if (this.isGrounded) this.state = 'run';
-      } else if (input.isDown('right')) {
-        this.vx = this.speed;
-        this.flipX = false;
-        if (this.isGrounded) this.state = 'run';
-      } else {
+      // 5.1 XỬ LÝ CÚI NGƯỜI (CROUCH: Phím S hoặc Mũi tên Xuống)
+      if (wantsCrouch && this.isGrounded) {
+        this.state = 'crouch';
         this.vx = 0;
-        if (this.isGrounded) this.state = 'idle';
-      }
 
-      // Nhảy (Phím W hoặc Space)
-      if (input.isPressed('jump') && this.isGrounded) {
-        this.vy = this.jumpForce;
-        this.isGrounded = false;
-        this.state = 'jump';
-        audio.playJump();
-        particles.spawnDustPuff(this.x, this.y);
+        // Nếu đang cúi trên bệ nhảy và bấm phím Nhảy -> Tụt xuống bệ phía dưới (Drop through platform)
+        if (this.jumpBufferTimer > 0) {
+          if (this.y < PhysicsEngine.GROUND_Y - 4) {
+            this.dropTimer = 14;
+            this.jumpBufferTimer = 0;
+            this.vy = 2;
+            this.isGrounded = false;
+            this.state = 'fall';
+          } else {
+            // Đang ở mặt đất: Nhảy vút lên từ tư thế cúi (Kèm giãn nhân vật Y)
+            this.vy = this.jumpForce;
+            this.isGrounded = false;
+            this.coyoteTimer = 0;
+            this.jumpBufferTimer = 0;
+            this.state = 'jump';
+            this.squashStretchX = 0.85; // Stretch Y
+            this.squashStretchY = 1.25;
+            audio.playJump();
+            particles.spawnDustPuff(this.x, this.y, 5);
+          }
+        }
+      } else {
+        if (this.state === 'crouch') {
+          this.state = 'idle';
+        }
+
+        // Di chuyển trái / phải
+        if (input.isDown('left')) {
+          this.vx = -this.speed;
+          this.flipX = true;
+          if (this.isGrounded) {
+            this.state = 'run';
+            if (this.stateTime % 7 === 0) {
+              particles.spawnDustPuff(this.x + 8, this.y, 2);
+            }
+            if (this.stateTime % 14 === 0) {
+              audio.playFootstep();
+            }
+          }
+        } else if (input.isDown('right')) {
+          this.vx = this.speed;
+          this.flipX = false;
+          if (this.isGrounded) {
+            this.state = 'run';
+            if (this.stateTime % 7 === 0) {
+              particles.spawnDustPuff(this.x - 8, this.y, 2);
+            }
+            if (this.stateTime % 14 === 0) {
+              audio.playFootstep();
+            }
+          }
+        } else {
+          this.vx = 0;
+          if (this.isGrounded) this.state = 'idle';
+        }
+
+        // 5.2 XỬ LÝ NHẢY (Phím W, Mũi tên Lên, Space, hoặc Nút Nhảy cảm ứng)
+        if (this.jumpBufferTimer > 0 && (this.isGrounded || this.coyoteTimer > 0)) {
+          this.vy = this.jumpForce;
+          this.isGrounded = false;
+          this.coyoteTimer = 0;
+          this.jumpBufferTimer = 0;
+          this.state = 'jump';
+          this.squashStretchX = 0.85; // Stretch Y khi nhảy (2-3 khung)
+          this.squashStretchY = 1.25;
+          audio.playJump();
+          particles.spawnDustPuff(this.x, this.y, 5);
+        }
       }
 
       // Đánh thường (Phím J)
@@ -194,15 +303,16 @@ export class Player {
         this.triggerAttack(1, audio, camera, particles);
       }
 
-      // Chiêu đặc biệt (Phím K) - Tiêu hao 30 Chỉ
+      // Chiêu đặc biệt (Phím K) - Tiêu hao 30 Chỉ (Yêu cầu 2: chữ nổi "NÉM KIM CHỈ!!" phóng to rồi nhỏ dần, tối nền 10 khung)
       if (input.isPressed('special')) {
         if (this.chiEnergy >= 30) {
           this.chiEnergy -= 30;
           this.state = 'special';
           this.stateTime = 0;
-          audio.playSpecialSkill();
-          camera.triggerShake(4, 10);
-          particles.spawnFloatingText(this.x, this.y - 45, 'NÉM KIM CHỈ!!', '#fedb5b');
+          audio.playSkillK();
+          camera.triggerDirectionalShake(this.flipX ? -1 : 1, 0, 3.2, 8);
+          camera.triggerSpecialFocus(this.x, this.y - 20); // Tối nền 10 khung, tập trung nhân vật
+          particles.spawnSkillCallout(this.x, this.y - 15, 'NÉM KIM CHỈ!!');
 
           // Phóng tia kim chỉ vàng kim
           const dir = this.flipX ? -1 : 1;
@@ -227,7 +337,7 @@ export class Player {
         this.dodgeCooldown = 40; // Cooldown né
         this.invincibleTimer = 16;
         audio.playDodge();
-        particles.spawnDustPuff(this.x, this.y);
+        particles.spawnDustPuff(this.x, this.y, 5);
       }
     }
 
@@ -239,21 +349,32 @@ export class Player {
     // Giới hạn biên màn chơi
     this.x = Math.max(16, Math.min(camera.maxX - 16, this.x));
 
-    // Kiểm tra va chạm sàn và bệ
-    const groundY = physics.checkGroundCollision(this.x, this.y, this.prevY);
+    // Kiểm tra va chạm sàn và bệ (có hỗ trợ dropTimer để tụt qua bệ nhảy)
+    const groundY = physics.checkGroundCollision(this.x, this.y, this.prevY, this.dropTimer > 0);
     if (groundY !== null) {
       if (!this.isGrounded && this.vy > 0) {
-        particles.spawnDustPuff(this.x, this.y);
+        // Tiếp đất: sinh bụi 4-6 hạt và co giãn nhân vật (Squash Y)
+        particles.spawnDustPuff(this.x, this.y, 5);
+        this.squashStretchX = 1.25;
+        this.squashStretchY = 0.8;
+        audio.playLand();
       }
       this.y = groundY;
       this.vy = 0;
       this.isGrounded = true;
+      this.coyoteTimer = 6;
       if (this.state === 'jump' || this.state === 'fall') {
-        this.state = this.vx !== 0 ? 'run' : 'idle';
+        this.state = wantsCrouch ? 'crouch' : (this.vx !== 0 ? 'run' : 'idle');
       }
     } else {
       this.isGrounded = false;
-      if (this.state !== 'attack_1' && this.state !== 'attack_2' && this.state !== 'attack_3' && this.state !== 'dodge' && this.state !== 'special') {
+      if (
+        this.state !== 'attack_1' &&
+        this.state !== 'attack_2' &&
+        this.state !== 'attack_3' &&
+        this.state !== 'dodge' &&
+        this.state !== 'special'
+      ) {
         this.state = this.vy < 0 ? 'jump' : 'fall';
       }
     }
@@ -270,26 +391,28 @@ export class Player {
     }
   }
 
-  private triggerAttack(
+  public triggerAttack(
     step: number,
-    audio: AudioManager,
-    camera: GameCamera,
-    particles: ParticleSystem
+    audio?: AudioManager,
+    camera?: GameCamera,
+    particles?: ParticleSystem
   ): void {
     this.comboStep = step;
     this.comboBuffer = false;
     this.stateTime = 0;
-    audio.playAttackSwing();
+    this.currentAttackId++;
+    this.hasHitEnemyThisAttack = false;
+    if (audio) audio.playAttackSwing(step);
 
     if (step === 1) {
       this.state = 'attack_1';
     } else if (step === 2) {
       this.state = 'attack_2';
-      camera.triggerShake(2, 6);
+      if (camera) camera.triggerDirectionalShake(this.flipX ? -1 : 1, 0, 2.2, 5);
     } else if (step === 3) {
       this.state = 'attack_3';
-      camera.triggerShake(4, 10);
-      particles.spawnFloatingText(this.x, this.y - 45, 'HOA SEN KHÍ!', '#40bfa3');
+      if (camera) camera.triggerDirectionalShake(this.flipX ? -1 : 1, 0, 3.5, 8);
+      if (particles) particles.spawnFloatingText(this.x, this.y - 45, 'HOA SEN KHÍ!', '#40bfa3');
     }
   }
 
@@ -307,17 +430,20 @@ export class Player {
 
     this.kyUcHearts = Math.max(0, this.kyUcHearts - amount);
     this.invincibleTimer = 45; // Nhấp nháy bất tử 45 frame (~0.75s)
+    this.flashTimer = 2; // Chớp trắng 2 khung ở đối tượng bị trúng
     this.state = 'hurt';
     this.stateTime = 0;
 
-    // Đẩy lùi (Knockback) ngược hướng va chạm
+    // Đẩy lùi (Knockback) ngược hướng va chạm có giảm tốc
     const knockDir = this.x < fromX ? -1 : 1;
     this.vx = knockDir * 3.5;
-    this.vy = -3.2;
+    this.vy = -3.0;
 
     audio.playPlayerHurt();
-    camera.triggerShake(5, 12);
-    particles.spawnHitSparks(this.x, this.y - 20, 6);
+    camera.triggerDirectionalShake(knockDir, 0, 3.2, 8);
+    camera.triggerHitStop(4);
+    particles.spawnHeartShards(this.x, this.y - 24, 6); // Tim Ký Ức vỡ thành mảnh khi mất
+    particles.spawnHitSparks(this.x, this.y - 20, 8, knockDir);
     particles.spawnFloatingText(this.x, this.y - 35, `-${amount} KÝ ỨC`, '#bf363b');
   }
 

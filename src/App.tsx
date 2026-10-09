@@ -6,7 +6,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { GameShell } from '../client/src/game/GameShell.tsx';
+import { GameShell } from './game/GameShell.tsx';
 import { DevPanel } from '../client/src/game/DevPanel.tsx';
 
 export default function App() {

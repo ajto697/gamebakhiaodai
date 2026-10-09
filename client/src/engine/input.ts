@@ -12,6 +12,7 @@ export type InputAction =
   | 'up'
   | 'down'
   | 'jump'
+  | 'crouch'
   | 'attack'
   | 'special'
   | 'dodge'
@@ -45,63 +46,67 @@ export class InputManager {
 
   private initKeyboardListeners(): void {
     window.addEventListener('keydown', (e) => {
-      const action = this.keyToAction(e.code, e.key);
-      if (action) {
+      const actions = this.keyToActions(e.code, e.key);
+      if (actions.length > 0) {
         // Tránh scroll màn hình khi bấm Space hoặc phím mũi tên
         if (['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.code)) {
           e.preventDefault();
         }
-        this.downActions.add(action);
+        for (const act of actions) {
+          this.downActions.add(act);
+        }
       }
     });
 
     window.addEventListener('keyup', (e) => {
-      const action = this.keyToAction(e.code, e.key);
-      if (action) {
-        this.downActions.delete(action);
+      const actions = this.keyToActions(e.code, e.key);
+      for (const act of actions) {
+        this.downActions.delete(act);
       }
     });
   }
 
-  private keyToAction(code: string, key: string): InputAction | null {
+  private keyToActions(code: string, key: string): InputAction[] {
     switch (code) {
       case 'KeyA':
       case 'ArrowLeft':
-        return 'left';
+        return ['left'];
       case 'KeyD':
       case 'ArrowRight':
-        return 'right';
+        return ['right'];
       case 'KeyW':
       case 'ArrowUp':
-        return 'up';
+        // Cả W và Mũi tên Lên đều kích hoạt hành động nhảy (jump) và hướng lên (up)
+        return ['up', 'jump'];
       case 'KeyS':
       case 'ArrowDown':
-        return 'down';
+        // Cả S và Mũi tên Xuống đều kích hoạt hành động cúi người (crouch) và hướng xuống (down)
+        return ['down', 'crouch'];
       case 'Space':
-        return 'jump';
+        return ['jump'];
       case 'KeyJ':
-        return 'attack';
+        return ['attack'];
       case 'KeyK':
-        return 'special';
+        return ['special'];
       case 'KeyL':
-        return 'dodge';
+        return ['dodge'];
       case 'Digit1':
-        return 'card1';
+        return ['card1'];
       case 'Digit2':
-        return 'card2';
+        return ['card2'];
       case 'Digit3':
-        return 'card3';
+        return ['card3'];
       case 'Digit4':
-        return 'card4';
+        return ['card4'];
       case 'KeyP':
-        return 'pause';
+        return ['pause'];
       default:
         // Hỗ trợ theo key cho bàn phím số
-        if (key === '1') return 'card1';
-        if (key === '2') return 'card2';
-        if (key === '3') return 'card3';
-        if (key === '4') return 'card4';
-        return null;
+        if (key === '1') return ['card1'];
+        if (key === '2') return ['card2'];
+        if (key === '3') return ['card3'];
+        if (key === '4') return ['card4'];
+        return [];
     }
   }
 

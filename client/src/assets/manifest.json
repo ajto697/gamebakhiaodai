@@ -262,6 +262,66 @@
       "fps": 2,
       "anchor": { "foot": { "x": 24, "y": 48 }, "head": { "x": 24, "y": 10 }, "hand": { "x": 24, "y": 24 } },
       "animations": { "talk": [0, 1] }
+    },
+    {
+      "id": "codex_ao_ngu_than",
+      "file": "codex/codex_ao_ngu_than.png",
+      "frameWidth": 64,
+      "frameHeight": 96,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 32, "y": 92 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "codex_ao_tac",
+      "file": "codex/codex_ao_tac.png",
+      "frameWidth": 64,
+      "frameHeight": 96,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 32, "y": 92 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "codex_ao_nhat_binh",
+      "file": "codex/codex_ao_nhat_binh.png",
+      "frameWidth": 64,
+      "frameHeight": 96,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 32, "y": 92 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "codex_ao_giao_linh",
+      "file": "codex/codex_ao_giao_linh.png",
+      "frameWidth": 64,
+      "frameHeight": 96,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 32, "y": 92 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "codex_ao_tu_than",
+      "file": "codex/codex_ao_tu_than.png",
+      "frameWidth": 64,
+      "frameHeight": 96,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 32, "y": 92 } },
+      "animations": { "default": [0] }
+    },
+    {
+      "id": "codex_ao_ba_ba",
+      "file": "codex/codex_ao_ba_ba.png",
+      "frameWidth": 64,
+      "frameHeight": 96,
+      "frameCount": 1,
+      "fps": 1,
+      "anchor": { "foot": { "x": 32, "y": 92 } },
+      "animations": { "default": [0] }
     }
   ]
 }

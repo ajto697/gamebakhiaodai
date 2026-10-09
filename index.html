@@ -12,6 +12,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+    <script>
+      // Đảm bảo window.fetch có cả getter và setter để tránh lỗi Cannot set property fetch
+      (function() {
+        try {
+          var currentFetch = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return currentFetch;
+            },
+            set: function(newFetch) {
+              currentFetch = newFetch;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (err) {
+          // Bỏ qua nếu môi trường không cho phép
+        }
+
+        window.addEventListener('error', function(event) {
+          if (event && event.message && event.message.indexOf('fetch') !== -1 && event.message.indexOf('getter') !== -1) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
   </head>
   <body class="bg-slate-950 text-slate-100 select-none overflow-hidden m-0 p-0">
     <div id="root"></div>

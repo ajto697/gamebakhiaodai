@@ -1,0 +1,316 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" shape-rendering="crispEdges">
+  <!-- 
+    ÁO NHẬT BÌNH TRIỀU NGUYỄN (NGUYEN DYNASTY COURT ROBE)
+    32-bit Arcade Pixel Art Illustration
+    Background: Flat solid #00FF00 (Chroma green for pixel isolation)
+    Palette: Warm Sunset (Crimson, Gold, Amber, Teal, Navy, Jade, Silk White)
+    Outlines: Dark Brown #331612 (Never pure black)
+    3-Tone Shading: Top-Left Lighting
+  -->
+  
+  <!-- 1. FLAT SOLID #00FF00 BACKGROUND (NO SHADOWS, NO GRADIENTS) -->
+  <rect x="0" y="0" width="512" height="512" fill="#00FF00" />
+
+  <!-- 2. GIÁ TREO ÁO GỖ CỔ TRUYỀN (SIMPLE WOODEN STAND - FRONT SYMMETRIC VIEW) -->
+  <!-- Đỉnh cọc trung tâm chạm ngọc / chốt gỗ -->
+  <rect x="250" y="44" width="12" height="16" fill="#331612" />
+  <rect x="252" y="46" width="8" height="12" fill="#754826" />
+  <rect x="252" y="46" width="3" height="12" fill="#a86c3b" />
+  <rect x="246" y="52" width="20" height="8" fill="#331612" />
+  <rect x="248" y="54" width="16" height="4" fill="#a86c3b" />
+
+  <!-- Đầu thanh xà ngang 2 bên chạm mây cuộn (Wooden finials) -->
+  <!-- Bên trái -->
+  <rect x="76" y="60" width="20" height="16" fill="#331612" />
+  <rect x="78" y="62" width="16" height="12" fill="#754826" />
+  <rect x="78" y="62" width="8" height="6" fill="#a86c3b" />
+  <rect x="88" y="68" width="6" height="6" fill="#4a2c17" />
+  <!-- Bên phải -->
+  <rect x="416" y="60" width="20" height="16" fill="#331612" />
+  <rect x="418" y="62" width="16" height="12" fill="#754826" />
+  <rect x="418" y="62" width="8" height="6" fill="#a86c3b" />
+  <rect x="428" y="68" width="6" height="6" fill="#4a2c17" />
+
+  <!-- Thanh xà ngang đỡ vai áo (Horizontal Crossbar) -->
+  <rect x="96" y="64" width="320" height="10" fill="#331612" />
+  <rect x="96" y="66" width="320" height="4" fill="#a86c3b" />
+  <rect x="96" y="70" width="320" height="2" fill="#754826" />
+
+  <!-- Trụ gỗ đứng trung tâm rủ xuống dưới tà áo -->
+  <rect x="250" y="400" width="12" height="70" fill="#331612" />
+  <rect x="252" y="400" width="4" height="70" fill="#a86c3b" />
+  <rect x="256" y="400" width="4" height="70" fill="#4a2c17" />
+
+  <!-- Chân đế giá gỗ hình bệ bán nguyệt -->
+  <rect x="200" y="468" width="112" height="16" fill="#331612" />
+  <rect x="204" y="470" width="104" height="6" fill="#a86c3b" />
+  <rect x="204" y="476" width="104" height="6" fill="#754826" />
+  <rect x="188" y="482" width="136" height="12" fill="#331612" />
+  <rect x="192" y="484" width="128" height="4" fill="#a86c3b" />
+  <rect x="192" y="488" width="128" height="4" fill="#4a2c17" />
+
+  <!-- 3. THÂN ÁO NHẬT BÌNH TRIỀU NGUYỄN (COURT ROBE BODY & SLEEVES) -->
+  <!-- Viền bao ngoài thân áo và tay áo (Thick dark brown outline #331612) -->
+  <path d="
+    M 212 72 
+    L 124 100 
+    L 96 112 
+    L 92 272 
+    L 148 272 
+    L 156 220 
+    L 168 396 
+    L 344 396 
+    L 356 220 
+    L 364 272 
+    L 420 272 
+    L 416 112 
+    L 388 100 
+    L 300 72 
+    Z
+  " fill="#331612" />
+
+  <!-- Cánh tay áo trái (Left Sleeve Silhouette & 3-tone shading) -->
+  <polygon points="126,104 100,116 96,268 144,268 152,220 172,176" fill="#87181c" />
+  <polygon points="126,104 104,116 100,268 128,268 136,190" fill="#ba252b" />
+  <polygon points="126,104 108,116 104,190 120,160" fill="#e6434a" />
+
+  <!-- Cánh tay áo phải (Right Sleeve Silhouette & 3-tone shading) -->
+  <polygon points="386,104 412,116 416,268 368,268 360,220 340,176" fill="#691215" />
+  <polygon points="386,104 408,116 412,268 384,268 376,190" fill="#87181c" />
+  <polygon points="386,104 400,116 404,190 388,160" fill="#ba252b" />
+
+  <!-- DẢI NGŨ SẮC CỔ TAY ÁO BÊN TRÁI (LEFT CUFF 5-COLOR STRIPES: NAVY, GOLD, WHITE, RED, JADE) -->
+  <!-- Viền nẹp cổ tay -->
+  <rect x="96" y="212" width="48" height="56" fill="#331612" />
+  <!-- Dải 1: Xanh Lam (Navy / Water) -->
+  <rect x="98" y="214" width="44" height="10" fill="#1e3863" />
+  <rect x="98" y="214" width="44" height="3" fill="#335c9e" />
+  <!-- Dải 2: Vàng Hoàng Kim (Gold / Earth) -->
+  <rect x="98" y="224" width="44" height="10" fill="#e09922" />
+  <rect x="98" y="224" width="44" height="3" fill="#fedb5b" />
+  <!-- Dải 3: Lụa Trắng (Silk White / Metal) -->
+  <rect x="98" y="234" width="44" height="10" fill="#d9cfbe" />
+  <rect x="98" y="234" width="44" height="3" fill="#fcf6ec" />
+  <!-- Dải 4: Đỏ Son (Crimson / Fire) -->
+  <rect x="98" y="244" width="44" height="10" fill="#87181c" />
+  <rect x="98" y="244" width="44" height="3" fill="#ba252b" />
+  <!-- Dải 5: Lục Biếc (Jade Green / Wood) -->
+  <rect x="98" y="254" width="44" height="12" fill="#17574b" />
+  <rect x="98" y="254" width="44" height="4" fill="#288a77" />
+  <rect x="98" y="254" width="44" height="1" fill="#42c2a8" />
+
+  <!-- DẢI NGŨ SẮC CỔ TAY ÁO BÊN PHẢI (RIGHT CUFF 5-COLOR STRIPES) -->
+  <rect x="368" y="212" width="48" height="56" fill="#331612" />
+  <!-- Dải 1: Xanh Lam -->
+  <rect x="370" y="214" width="44" height="10" fill="#101e38" />
+  <rect x="370" y="214" width="44" height="3" fill="#1e3863" />
+  <!-- Dải 2: Vàng Hoàng Kim -->
+  <rect x="370" y="224" width="44" height="10" fill="#9c6314" />
+  <rect x="370" y="224" width="44" height="3" fill="#e09922" />
+  <!-- Dải 3: Lụa Trắng -->
+  <rect x="370" y="234" width="44" height="10" fill="#b0a797" />
+  <rect x="370" y="234" width="44" height="3" fill="#d9cfbe" />
+  <!-- Dải 4: Đỏ Son -->
+  <rect x="370" y="244" width="44" height="10" fill="#691215" />
+  <rect x="370" y="244" width="44" height="3" fill="#87181c" />
+  <!-- Dải 5: Lục Biếc -->
+  <rect x="370" y="254" width="44" height="12" fill="#0e3d34" />
+  <rect x="370" y="254" width="44" height="4" fill="#17574b" />
+  <rect x="370" y="254" width="44" height="1" fill="#288a77" />
+
+  <!-- THÂN ÁO CHÍNH (MAIN TORSO PIECE - SYMMETRIC CRIMSON SILK WITH 3-TONE SHADING) -->
+  <polygon points="214,76 300,76 352,224 340,392 172,392 160,224" fill="#ba252b" />
+  <!-- Shadow mảng bên phải (ánh sáng chiếu từ góc trên bên trái) -->
+  <polygon points="256,76 300,76 352,224 340,392 256,392" fill="#87181c" opacity="0.85" />
+  <!-- Highlight mảng vai trái -->
+  <polygon points="214,76 256,76 256,120 180,120" fill="#e6434a" opacity="0.75" />
+
+  <!-- ĐƯỜNG XẺ VẠT TRUNG TÂM (CENTER FRONT SEAM & OPENING) -->
+  <rect x="254" y="160" width="4" height="232" fill="#331612" />
+  <rect x="252" y="160" width="2" height="232" fill="#e6434a" opacity="0.6" />
+  <rect x="258" y="160" width="2" height="232" fill="#691215" />
+
+  <!-- 4. CỔ ÁO NHẬT BÌNH ĐẶC TRƯNG HÌNH CHỮ NHẬT TO BẢN (RECTANGULAR Y-COLLAR) -->
+  <!-- Khung viền nẹp cổ chữ nhật ngoài (Dark brown border) -->
+  <path d="
+    M 218 72 
+    L 294 72 
+    L 294 164 
+    L 268 164 
+    L 268 392 
+    L 244 392 
+    L 244 164 
+    L 218 164 
+    Z
+  " fill="#331612" />
+
+  <!-- Lớp nền dải cổ áo gấm vàng kim hoàng gia -->
+  <path d="
+    M 222 76 
+    L 290 76 
+    L 290 160 
+    L 264 160 
+    L 264 388 
+    L 248 388 
+    L 248 160 
+    L 222 160 
+    Z
+  " fill="#e09922" />
+
+  <!-- Lớp highlight gấm vàng bên trái dải cổ -->
+  <rect x="222" y="76" width="34" height="84" fill="#fedb5b" />
+  <rect x="248" y="160" width="8" height="228" fill="#fedb5b" />
+
+  <!-- Khoang cổ áo trong (Inner collar opening) -->
+  <rect x="238" y="76" width="36" height="52" fill="#331612" />
+  <rect x="242" y="80" width="28" height="44" fill="#1e3863" />
+  <!-- Viền lót cổ lụa trắng bên trong -->
+  <rect x="244" y="80" width="24" height="6" fill="#fcf6ec" />
+  <rect x="244" y="86" width="24" height="2" fill="#d9cfbe" />
+
+  <!-- HOA VĂN THÊU TỈ MỈ TRÊN DẢI CỔ ÁO NHẬT BÌNH (EMBROIDERED CLOUD & FLORAL MOTIFS) -->
+  <!-- Họa tiết chữ Vạn & hoa sen cách điệu trên nẹp cổ -->
+  <rect x="226" y="86" width="8" height="8" fill="#17574b" />
+  <rect x="228" y="88" width="4" height="4" fill="#42c2a8" />
+  <rect x="278" y="86" width="8" height="8" fill="#17574b" />
+  <rect x="280" y="88" width="4" height="4" fill="#288a77" />
+
+  <rect x="226" y="104" width="8" height="8" fill="#87181c" />
+  <rect x="228" y="106" width="4" height="4" fill="#ba252b" />
+  <rect x="278" y="104" width="8" height="8" fill="#691215" />
+  <rect x="280" y="106" width="4" height="4" fill="#87181c" />
+
+  <rect x="226" y="122" width="8" height="8" fill="#1e3863" />
+  <rect x="228" y="124" width="4" height="4" fill="#335c9e" />
+  <rect x="278" y="122" width="8" height="8" fill="#101e38" />
+  <rect x="280" y="124" width="4" height="4" fill="#1e3863" />
+
+  <rect x="226" y="140" width="8" height="8" fill="#17574b" />
+  <rect x="228" y="142" width="4" height="4" fill="#42c2a8" />
+  <rect x="278" y="140" width="8" height="8" fill="#17574b" />
+  <rect x="280" y="142" width="4" height="4" fill="#288a77" />
+
+  <!-- Dọc nẹp ngực buông xuống -->
+  <rect x="250" y="174" width="12" height="10" fill="#17574b" />
+  <rect x="254" y="176" width="4" height="6" fill="#42c2a8" />
+  <rect x="250" y="198" width="12" height="10" fill="#87181c" />
+  <rect x="254" y="200" width="4" height="6" fill="#ba252b" />
+  <rect x="250" y="222" width="12" height="10" fill="#1e3863" />
+  <rect x="254" y="224" width="4" height="6" fill="#335c9e" />
+  <rect x="250" y="246" width="12" height="10" fill="#17574b" />
+  <rect x="254" y="248" width="4" height="6" fill="#42c2a8" />
+  <rect x="250" y="270" width="12" height="10" fill="#87181c" />
+  <rect x="254" y="272" width="4" height="6" fill="#ba252b" />
+  <rect x="250" y="294" width="12" height="10" fill="#1e3863" />
+  <rect x="254" y="296" width="4" height="6" fill="#335c9e" />
+  <rect x="250" y="318" width="12" height="10" fill="#17574b" />
+  <rect x="254" y="320" width="4" height="6" fill="#42c2a8" />
+  <rect x="250" y="342" width="12" height="10" fill="#87181c" />
+  <rect x="254" y="344" width="4" height="6" fill="#ba252b" />
+  <rect x="250" y="366" width="12" height="10" fill="#1e3863" />
+  <rect x="254" y="368" width="4" height="6" fill="#335c9e" />
+
+  <!-- DẢI KIM KHÁNH & NGỌC BỘI CÀI NGỰC HOÀNG GIA (CHEST JADE MEDALLION & TASSEL) -->
+  <!-- Miếng ngọc bội tròn viền vàng -->
+  <circle cx="256" cy="156" r="10" fill="#331612" />
+  <circle cx="256" cy="156" r="8" fill="#fedb5b" />
+  <circle cx="256" cy="156" r="6" fill="#fcf6ec" />
+  <circle cx="255" cy="155" r="3" fill="#ffffff" />
+  <!-- Hạt châu ngọc lục biếc -->
+  <circle cx="256" cy="170" r="4" fill="#331612" />
+  <circle cx="256" cy="170" r="3" fill="#42c2a8" />
+  <circle cx="255" cy="169" r="1" fill="#ffffff" />
+  <!-- Dải tua rua kim tuyến đỏ rủ xuống -->
+  <rect x="254" y="174" width="4" height="22" fill="#331612" />
+  <rect x="255" y="174" width="2" height="20" fill="#ba252b" />
+  <rect x="253" y="194" width="6" height="4" fill="#fedb5b" />
+
+  <!-- 5. HOA VĂN ĐOÀN PHƯỢNG HOÀNG (CIRCULAR PHOENIX MEDALLIONS ON SHOULDERS) -->
+  <!-- Đoàn phượng bên vai trái -->
+  <circle cx="180" cy="140" r="22" fill="#331612" />
+  <circle cx="180" cy="140" r="20" fill="#e09922" />
+  <circle cx="180" cy="140" r="16" fill="#ba252b" />
+  <!-- Cánh phượng và hoa cúc thêu chỉ vàng -->
+  <path d="M 174 130 Q 184 126 188 136 Q 186 148 174 146 Q 168 140 174 130 Z" fill="#fedb5b" />
+  <circle cx="178" cy="134" r="2" fill="#ffffff" />
+  <path d="M 182 144 Q 192 148 186 154 Q 176 152 178 144 Z" fill="#42c2a8" />
+
+  <!-- Đoàn phượng bên vai phải -->
+  <circle cx="332" cy="140" r="22" fill="#331612" />
+  <circle cx="332" cy="140" r="20" fill="#9c6314" />
+  <circle cx="332" cy="140" r="16" fill="#87181c" />
+  <path d="M 338 130 Q 328 126 324 136 Q 326 148 338 146 Q 344 140 338 130 Z" fill="#fedb5b" />
+  <circle cx="334" cy="134" r="2" fill="#ffffff" />
+  <path d="M 330 144 Q 320 148 326 154 Q 336 152 334 144 Z" fill="#288a77" />
+
+  <!-- 6. ĐỒ ÁN HOA VĂN THỦY BA TAM SƠN Ở CHÂN TÀ ÁO (WATER WAVE & SACRED MOUNTAIN HEM) -->
+  <!-- Khung viền gấu áo dưới -->
+  <rect x="168" y="348" width="176" height="48" fill="#331612" />
+
+  <!-- Lớp 1: Sóng nước cuộn trào Thủy Ba (Deep Navy & Sky Blue) -->
+  <rect x="170" y="350" width="172" height="44" fill="#101e38" />
+  <path d="
+    M 170 380 
+    Q 180 372 192 380 
+    Q 204 388 214 380 
+    Q 226 372 236 380 
+    Q 246 388 256 380 
+    Q 266 372 276 380 
+    Q 286 388 298 380 
+    Q 308 372 320 380 
+    Q 332 388 342 380 
+    L 342 394 
+    L 170 394 
+    Z
+  " fill="#1e3863" />
+  <path d="
+    M 170 384 
+    Q 180 376 192 384 
+    Q 204 392 214 384 
+    Q 226 376 236 384 
+    Q 246 392 256 384 
+    Q 266 376 276 384 
+    Q 286 392 298 384 
+    Q 308 376 320 384 
+    Q 332 392 342 384 
+    L 342 394 
+    L 170 394 
+    Z
+  " fill="#335c9e" />
+
+  <!-- Lớp 2: Các dải sóng nước đứng ngũ sắc (Ngũ sắc thủy ba) -->
+  <rect x="180" y="362" width="6" height="26" fill="#fedb5b" />
+  <rect x="188" y="364" width="6" height="24" fill="#ba252b" />
+  <rect x="196" y="360" width="6" height="28" fill="#42c2a8" />
+  <rect x="204" y="364" width="6" height="24" fill="#fcf6ec" />
+  <rect x="212" y="362" width="6" height="26" fill="#1e3863" />
+
+  <rect x="294" y="362" width="6" height="26" fill="#fedb5b" />
+  <rect x="302" y="364" width="6" height="24" fill="#87181c" />
+  <rect x="310" y="360" width="6" height="28" fill="#288a77" />
+  <rect x="318" y="364" width="6" height="24" fill="#d9cfbe" />
+  <rect x="326" y="362" width="6" height="26" fill="#101e38" />
+
+  <!-- Lớp 3: Ba ngọn núi thiêng Tam Sơn (Tam Sơn Ngũ Hải) vươn lên giữa sóng nước -->
+  <!-- Núi trung tâm cao nhất -->
+  <polygon points="256,336 242,374 270,374" fill="#331612" />
+  <polygon points="256,338 244,372 268,372" fill="#17574b" />
+  <polygon points="256,338 246,372 256,372" fill="#42c2a8" />
+  <circle cx="256" cy="336" r="3" fill="#fedb5b" />
+
+  <!-- Núi bên trái -->
+  <polygon points="230,344 218,372 242,372" fill="#331612" />
+  <polygon points="230,346 220,370 240,370" fill="#17574b" />
+  <polygon points="230,346 222,370 230,370" fill="#42c2a8" />
+  <circle cx="230" cy="344" r="2.5" fill="#fedb5b" />
+
+  <!-- Núi bên phải -->
+  <polygon points="282,344 270,372 294,372" fill="#331612" />
+  <polygon points="282,346 272,370 292,370" fill="#0e3d34" />
+  <polygon points="282,346 274,370 282,370" fill="#288a77" />
+  <circle cx="282" cy="344" r="2.5" fill="#e09922" />
+
+  <!-- Dải mây ngũ sắc viền ngang gấu áo -->
+  <rect x="170" y="348" width="172" height="4" fill="#e09922" />
+  <rect x="170" y="348" width="90" height="2" fill="#fedb5b" />
+</svg>

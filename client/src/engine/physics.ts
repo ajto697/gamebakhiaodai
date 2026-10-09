@@ -55,17 +55,24 @@ export class PhysicsEngine {
    * @param prevY Tọa độ Y ở frame trước
    * @returns Độ cao Y mặt tiếp xúc nếu đang đứng trên sàn/bệ, hoặc null
    */
-  public checkGroundCollision(x: number, y: number, prevY: number): number | null {
+  public checkGroundCollision(
+    x: number,
+    y: number,
+    prevY: number,
+    ignorePlatforms = false
+  ): number | null {
     // 1. Kiểm tra mặt đất chính
     if (y >= PhysicsEngine.GROUND_Y) {
       return PhysicsEngine.GROUND_Y;
     }
 
     // 2. Kiểm tra các bệ nhảy (chỉ va chạm một chiều từ trên rơi xuống - One-way platform)
-    for (const p of this.platforms) {
-      if (x >= p.x && x <= p.x + p.width) {
-        if (prevY <= p.y + 2 && y >= p.y - 1) {
-          return p.y;
+    if (!ignorePlatforms) {
+      for (const p of this.platforms) {
+        if (x >= p.x && x <= p.x + p.width) {
+          if (prevY <= p.y + 2 && y >= p.y - 1) {
+            return p.y;
+          }
         }
       }
     }

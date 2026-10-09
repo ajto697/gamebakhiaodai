@@ -47,6 +47,10 @@ export class Enemy {
   public isMiniBoss = false;
   public hasShield = false;
 
+  // Hiệu ứng nhận đòn (Hit-Stop & Flash)
+  public flashTimer = 0;
+  public hitCooldown = 0;
+
   constructor(
     id: string,
     type: EnemyType,
@@ -90,6 +94,9 @@ export class Enemy {
     if (this.isDead) return;
 
     this.stateTime++;
+    if (this.flashTimer > 0) this.flashTimer--;
+    if (this.hitCooldown > 0) this.hitCooldown--;
+
     const speedMult = difficulty === 'de' ? 0.75 : 1.0;
     const baseSpeed = (this.isMiniBoss ? 1.0 : 1.4) * speedMult;
 
@@ -181,12 +188,14 @@ export class Enemy {
       this.vy = 0;
     }
 
-    // 2. Va chạm với đòn đánh thường của nhân vật
+    // 2. Va chạm với đòn đánh thường của nhân vật (Đòn J Combo 1, 2, 3)
     const playerAttackBox = player.getAttackHitbox();
-    if (playerAttackBox && checkAABB(this.getHurtbox(), playerAttackBox)) {
+    if (playerAttackBox && this.hitCooldown <= 0 && checkAABB(this.getHurtbox(), playerAttackBox)) {
       const isFinisher = player.state === 'attack_3';
-      const dmg = isFinisher ? 22 : 12;
-      this.takeHit(dmg, player.x, particles, audio, camera, player, isFinisher);
+      const comboStep = player.comboStep || (isFinisher ? 3 : (player.state === 'attack_2' ? 2 : 1));
+      const dmg = isFinisher ? 28 : (comboStep === 2 ? 18 : 12);
+      this.hitCooldown = isFinisher ? 16 : 10;
+      this.takeHit(dmg, player.x, particles, audio, camera, player, isFinisher, comboStep);
     }
 
     // 3. Va chạm với phi đạn kim chỉ (Projectiles)
@@ -194,7 +203,7 @@ export class Enemy {
       const p = player.projectiles[i];
       const projBox: RectAABB = { x: p.x - p.width / 2, y: p.y - p.height / 2, width: p.width, height: p.height };
       if (checkAABB(this.getHurtbox(), projBox)) {
-        this.takeHit(p.damage, p.x, particles, audio, camera, player, true);
+        this.takeHit(p.damage, p.x, particles, audio, camera, player, true, 3);
         player.projectiles.splice(i, 1);
       }
     }
@@ -215,7 +224,8 @@ export class Enemy {
     audio: AudioManager,
     camera: GameCamera,
     player: Player,
-    isFinisher: boolean
+    isFinisher: boolean,
+    comboStep = 1
   ): void {
     // Nếu là mini-boss có khiên hiểu lầm, giảm sát thương vật lý trực tiếp
     const actualDmg = this.hasShield ? Math.max(2, Math.floor(dmg * 0.2)) : dmg;
@@ -223,17 +233,29 @@ export class Enemy {
     this.hp -= actualDmg;
     this.aiState = 'stun';
     this.stateTime = 0;
+    this.flashTimer = 2; // Chớp trắng 2 khung ở đối tượng bị trúng (Yêu cầu 1)
 
-    // Đẩy lùi (Knockback)
+    // Đẩy lùi (Knockback có giảm tốc)
     const knockDir = this.x < fromX ? -1 : 1;
-    this.vx = knockDir * (isFinisher ? 4.5 : 2.5);
+    this.vx = knockDir * (isFinisher ? 4.2 : (comboStep === 2 ? 3.0 : 2.2));
 
-    // Kích hoạt Hit-Stop 4 frames tạo cảm giác đòn đánh lực
-    camera.triggerHitStop(isFinisher ? 5 : 3);
-    camera.triggerShake(isFinisher ? 5 : 2, 8);
+    // Kích hoạt Hit-Stop 3-5 khung hình (Yêu cầu 1)
+    const hitStopFrames = isFinisher ? 5 : (comboStep === 2 ? 4 : 3);
+    camera.triggerHitStop(hitStopFrames);
+
+    // Kích hoạt Rung màn hình theo hướng đánh (biên độ nhỏ, tắt dần)
+    const shakeIntensity = isFinisher ? 3.5 : (comboStep === 2 ? 2.8 : 2.2);
+    const shakeDuration = isFinisher ? 8 : (comboStep === 2 ? 6 : 5);
+    camera.triggerDirectionalShake(knockDir, 0, shakeIntensity, shakeDuration);
+
+    // Chớp sáng màn hình dịu nhẹ
+    camera.triggerImpactFlash(isFinisher ? 0.22 : 0.12);
 
     audio.playHitImpact();
-    particles.spawnHitSparks(this.x, this.y - 15, isFinisher ? 12 : 6);
+
+    // Sinh bộ hiệu ứng va chạm (Slash Arc 3 khung, sparks 6-10 hạt, sóng xung kích)
+    particles.spawnSlashHitVisual(this.x, this.y - 18, isFinisher, comboStep, player.flipX);
+
     particles.spawnFloatingText(
       this.x,
       this.y - 30,
@@ -248,19 +270,24 @@ export class Enemy {
     if (this.hp <= 0) {
       this.aiState = 'dissolve';
       this.stateTime = 0;
+      camera.triggerHitStop(4);
+      camera.triggerDirectionalShake(knockDir, 0, 3.2, 8);
       particles.spawnFloatingText(this.x, this.y - 45, 'TỈNH NGỘ!', '#77e0b5');
     }
   }
 
   /**
-   * Phá vỡ Khiên Hiểu Lầm khi bị ném đúng Thẻ Sự Thật
+   * Phá vỡ Khiên Hiểu Lầm khi bị ném đúng Thẻ Sự Thật (Yêu cầu 4)
    */
-  public breakShield(particles: ParticleSystem, camera: GameCamera): void {
+  public breakShield(particles: ParticleSystem, camera: GameCamera, audio?: AudioManager): void {
     if (this.hasShield) {
       this.hasShield = false;
-      camera.triggerShake(6, 15);
-      particles.spawnHitSparks(this.x, this.y - 20, 16);
-      particles.spawnFloatingText(this.x, this.y - 45, 'VỠ KHIÊN HIỂU LẦM!!', '#40bfa3');
+      if (audio) audio.playShieldBreak();
+      camera.triggerHitStop(4); // 4 khung hit-stop
+      camera.triggerDirectionalShake(0, -1, 3.0, 8);
+      particles.spawnShieldShards(this.x, this.y - 25, 14, '#77e0b5');
+      particles.spawnImpactShockwave(this.x, this.y - 25, '#77e0b5', 36);
+      particles.spawnFloatingText(this.x, this.y - 50, 'PHÁ KHIÊN HIỂU LẦM!', '#77e0b5');
     }
   }
 }

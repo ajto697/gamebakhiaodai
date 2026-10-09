@@ -16,7 +16,7 @@ import statusRouter from './server/routes/status.ts';
 dotenv.config();
 
 const app = express();
-const port = parseInt(process.env.PORT || '3000', 10);
+const port = 3000;
 
 app.use(express.json());
 

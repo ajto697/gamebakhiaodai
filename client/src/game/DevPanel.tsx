@@ -18,8 +18,11 @@ interface DevPanelProps {
 }
 
 export const DevPanel: React.FC<DevPanelProps> = ({ isOpen, onClose }) => {
-  const [activeSubTab, setActiveSubTab] = useState<'warp' | 'remix' | 'palette' | 'judge'>('warp');
+  const [activeSubTab, setActiveSubTab] = useState<'photo' | 'warp' | 'palette' | 'judge'>('photo');
   const sceneMgr = SceneManager.getInstance();
+
+  const [freezeTime, setFreezeTime] = useState(sceneMgr.isTimeFrozen);
+  const [hideDebug, setHideDebug] = useState(sceneMgr.hideDebugHud);
 
   // State cho Thử /api/judge
   const [testEvent, setTestEvent] = useState('di_tich_hue');
@@ -30,6 +33,33 @@ export const DevPanel: React.FC<DevPanelProps> = ({ isOpen, onClose }) => {
   const [judgeResult, setJudgeResult] = useState<any>(null);
 
   if (!isOpen) return null;
+
+  const handleToggleFreeze = () => {
+    const next = !freezeTime;
+    setFreezeTime(next);
+    sceneMgr.isTimeFrozen = next;
+  };
+
+  const handleToggleHideDebug = () => {
+    const next = !hideDebug;
+    setHideDebug(next);
+    sceneMgr.hideDebugHud = next;
+  };
+
+  const handleSetupSceneA = () => {
+    sceneMgr.setupProofSceneA();
+    onClose();
+  };
+
+  const handleSetupSceneB = () => {
+    sceneMgr.setupProofSceneB();
+    onClose();
+  };
+
+  const handleSetupSceneC = () => {
+    sceneMgr.setupProofSceneC();
+    onClose();
+  };
 
   const handleWarp = (scene: any, levelId?: string) => {
     sceneMgr.changeScene(scene, levelId);
@@ -82,8 +112,9 @@ export const DevPanel: React.FC<DevPanelProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Tab chuyển đổi trong Dev Panel */}
-        <div className="flex border-b border-slate-800 bg-slate-950/80 px-4 pt-2 gap-2 text-xs">
+        <div className="flex border-b border-slate-800 bg-slate-950/80 px-4 pt-2 gap-2 text-xs overflow-x-auto">
           {[
+            { id: 'photo', label: '📸 Chụp Ảnh Minh Chứng (A, B, C)' },
             { id: 'warp', label: '🚀 Chuyển Cảnh / Màn' },
             { id: 'palette', label: '🎨 Bảng 32 Màu' },
             { id: 'judge', label: '⚖️ Thử /api/judge' },
@@ -91,7 +122,7 @@ export const DevPanel: React.FC<DevPanelProps> = ({ isOpen, onClose }) => {
             <button
               key={tab.id}
               onClick={() => setActiveSubTab(tab.id as any)}
-              className={`px-3 py-1.5 rounded-t-lg font-bold transition-all ${
+              className={`px-3 py-1.5 rounded-t-lg font-bold transition-all whitespace-nowrap ${
                 activeSubTab === tab.id
                   ? 'bg-slate-900 text-amber-300 border-t border-x border-slate-700'
                   : 'text-slate-400 hover:text-amber-200'
@@ -104,6 +135,121 @@ export const DevPanel: React.FC<DevPanelProps> = ({ isOpen, onClose }) => {
 
         {/* Nội dung chi tiết */}
         <div className="flex-1 overflow-y-auto p-5 space-y-4 text-xs">
+          {/* TAB 0: CHẾ ĐỘ CHỤP ẢNH MINH CHỨNG (YÊU CẦU 10) */}
+          {activeSubTab === 'photo' && (
+            <div className="space-y-4">
+              <div className="p-3 rounded-xl bg-amber-950/40 border border-amber-600/50 text-amber-200 space-y-1">
+                <h3 className="font-bold text-sm text-amber-300">
+                  📸 CHẾ ĐỘ CHỤP ẢNH MINH CHỨNG (DỰNG TRẠNG THÁI TỪ CHÍNH LOGIC GAME)
+                </h3>
+                <p className="text-slate-300">
+                  Bấm nút bên dưới để hệ thống tự động đưa game vào đúng trạng thái chuẩn xác của từng ảnh chụp theo đúng logic thực tế.
+                </p>
+              </div>
+
+              {/* Các công tắc hỗ trợ chụp ảnh */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800">
+                <button
+                  onClick={handleToggleFreeze}
+                  className={`p-2.5 rounded-lg font-bold border transition-all flex items-center justify-between ${
+                    freezeTime
+                      ? 'bg-amber-500 text-slate-950 border-amber-400'
+                      : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                  }`}
+                >
+                  <span>⏸️ Tạm dừng thời gian (Freeze Time):</span>
+                  <span className="font-mono text-xs px-2 py-0.5 rounded bg-black/30">
+                    {freezeTime ? 'ĐANG DỪNG' : 'CHẠY TỰ NHIÊN'}
+                  </span>
+                </button>
+
+                <button
+                  onClick={handleToggleHideDebug}
+                  className={`p-2.5 rounded-lg font-bold border transition-all flex items-center justify-between ${
+                    hideDebug
+                      ? 'bg-emerald-500 text-slate-950 border-emerald-400'
+                      : 'bg-slate-800 text-slate-300 border-slate-700 hover:bg-slate-700'
+                  }`}
+                >
+                  <span>👁️ Ẩn bảng debug &amp; [F1: Dev]:</span>
+                  <span className="font-mono text-xs px-2 py-0.5 rounded bg-black/30">
+                    {hideDebug ? 'ĐÃ ẨN (ẢNH SẠCH)' : 'ĐANG HIỆN'}
+                  </span>
+                </button>
+              </div>
+
+              {/* 3 Nút chụp ảnh minh chứng */}
+              <div className="space-y-3">
+                <h4 className="font-bold text-amber-300 text-xs uppercase tracking-wider">
+                  3 Khung Cảnh Cần Chụp:
+                </h4>
+
+                <div className="grid grid-cols-1 gap-3">
+                  {/* Nút 1: ẢNH A */}
+                  <div className="p-3.5 rounded-xl bg-slate-950 border border-amber-500/40 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-sm text-amber-200">
+                        ẢNH A: MINI-BOSS MÀN 3 (c1_m3, Năm Chiếc Khuy Ngũ Thường)
+                      </span>
+                      <button
+                        onClick={handleSetupSceneA}
+                        className="px-4 py-2 rounded-lg bg-amber-500 text-slate-950 font-bold hover:bg-amber-400 text-xs transition-all shadow-md"
+                      >
+                        🚀 DỰNG CẢNH ẢNH A NGAY
+                      </button>
+                    </div>
+                    <ul className="text-slate-400 text-[11px] list-disc list-inside space-y-0.5">
+                      <li>Camera khóa lại: nhân vật, mini-boss, bong bóng quan niệm sai &amp; khay thẻ cùng trong khung 480x270, không bị HUD che.</li>
+                      <li>Khay 3 thẻ hiển thị trọn nội dung, thẻ đang chọn phóng to/khung đọc, viền sáng và con trỏ.</li>
+                      <li>Khiên Hiểu Lầm vẽ lục giác nhấp nháy quanh mini-boss kèm nhãn &quot;KHIÊN HIỂU LẦM&quot;.</li>
+                      <li>Không còn nhân vật thứ hai nào chìm dưới HUD.</li>
+                    </ul>
+                  </div>
+
+                  {/* Nút 2: ẢNH B */}
+                  <div className="p-3.5 rounded-xl bg-slate-950 border border-rose-500/40 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-sm text-rose-200">
+                        ẢNH B: BOSS CUỐI (Trùm &quot;Bóng Lãng Quên&quot;)
+                      </span>
+                      <button
+                        onClick={handleSetupSceneB}
+                        className="px-4 py-2 rounded-lg bg-rose-500 text-slate-950 font-bold hover:bg-rose-400 text-xs transition-all shadow-md"
+                      >
+                        🚀 DỰNG CẢNH ẢNH B NGAY
+                      </button>
+                    </div>
+                    <ul className="text-slate-400 text-[11px] list-disc list-inside space-y-0.5">
+                      <li>Thanh trạng thái boss trên cùng: tên &amp; &quot;LÃNG QUÊN: xx%&quot;.</li>
+                      <li>Khiên mạng nhện vẽ rõ quanh boss kèm nhãn &quot;KHIÊN HIỂU LẦM&quot; và bong bóng quan niệm sai.</li>
+                      <li>Khay 3 thẻ ở đáy, thẻ đang chọn có viền sáng, hiện chỉ dẫn &quot;◀/▶ chọn, J ném&quot; và đường ngắm từ nhân vật tới boss.</li>
+                    </ul>
+                  </div>
+
+                  {/* Nút 3: ẢNH C */}
+                  <div className="p-3.5 rounded-xl bg-slate-950 border border-teal-500/40 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <span className="font-bold text-sm text-teal-200">
+                        ẢNH C: MÀN RÁP ÁO (Với 1 Mảnh Đặt Sai)
+                      </span>
+                      <button
+                        onClick={handleSetupSceneC}
+                        className="px-4 py-2 rounded-lg bg-teal-500 text-slate-950 font-bold hover:bg-teal-400 text-xs transition-all shadow-md"
+                      >
+                        🚀 DỰNG CẢNH ẢNH C NGAY
+                      </button>
+                    </div>
+                    <ul className="text-slate-400 text-[11px] list-disc list-inside space-y-0.5">
+                      <li>Hình áo ngũ thân ở giữa (sprite phẳng theo palette.ts) với 4 vùng viền nét đứt (thân áo, cổ đứng, hàng khuy, tay chẽn) kèm nhãn tên.</li>
+                      <li>Danh sách 4 mảnh bên trái, bảng nghệ nhân phía dưới.</li>
+                      <li>Đặt sai: mảnh nảy lại, bảng nghệ nhân hiện lời giải thích vị trí đúng (trọn câu dùng thẻ học) và vùng đúng nhấp sáng nhẹ.</li>
+                      <li>Tất cả hiện cùng lúc trong một khung hình 480x270.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
           {/* TAB 1: WARP SCENE */}
           {activeSubTab === 'warp' && (
             <div className="space-y-4">

@@ -24,13 +24,17 @@ export class PaperdollRenderer {
   ): void {
     ctx.save();
 
-    // 1. Thân người mẫu mannequin (da ngà sáng #eedbc5)
+    // 1. Thân người mẫu mannequin (da ngà sáng #eedbc5 có đổ bóng khối)
     ctx.fillStyle = '#eedbc5';
     // Đầu
     ctx.beginPath();
     ctx.arc(centerX, baseY - 210, 22, 0, Math.PI * 2);
     ctx.fill();
+    // Đổ bóng cằm & cổ ngà
+    ctx.fillStyle = '#dbcca9';
+    ctx.fillRect(centerX - 6, baseY - 192, 12, 4);
     // Cổ
+    ctx.fillStyle = '#eedbc5';
     ctx.fillRect(centerX - 6, baseY - 190, 12, 16);
     // Vai và thân
     ctx.fillRect(centerX - 24, baseY - 176, 48, 65);
@@ -38,14 +42,21 @@ export class PaperdollRenderer {
     ctx.fillRect(centerX - 16, baseY - 110, 12, 100);
     ctx.fillRect(centerX + 4, baseY - 110, 12, 100);
 
-    // Khuôn mặt tối giản phong cách pixel-art
+    // Khuôn mặt thanh tú phong cách pixel-art Cố Đô
     ctx.fillStyle = '#63534b';
     ctx.fillRect(centerX - 9, baseY - 212, 3, 3);
     ctx.fillRect(centerX + 6, baseY - 212, 3, 3);
+    // Điểm sáng mắt
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(centerX - 8, baseY - 213, 1, 1);
+    ctx.fillRect(centerX + 7, baseY - 213, 1, 1);
+    // Môi son đỏ thắm cung đình
     ctx.fillStyle = '#bf363b';
     ctx.fillRect(centerX - 4, baseY - 200, 8, 2);
+    ctx.fillStyle = '#e85a53';
+    ctx.fillRect(centerX - 2, baseY - 201, 4, 1);
 
-    // Tóc đen búi cao
+    // Tóc đen búi cao cài trâm ngọc
     ctx.fillStyle = '#161426';
     ctx.beginPath();
     ctx.arc(centerX, baseY - 216, 23, Math.PI, Math.PI * 2);
@@ -53,6 +64,11 @@ export class PaperdollRenderer {
     ctx.beginPath();
     ctx.arc(centerX, baseY - 238, 12, 0, Math.PI * 2);
     ctx.fill();
+    // Trâm cài tóc vàng kim chạm ngọc bích
+    ctx.fillStyle = '#fedb5b';
+    ctx.fillRect(centerX + 6, baseY - 242, 14, 2);
+    ctx.fillStyle = '#40bfa3';
+    ctx.fillRect(centerX + 18, baseY - 243, 3, 4);
 
     // 2. LỚP QUẦN HOẶC VÁY (TẦNG DƯỚI CỦA ÁO)
     if (outfit.quan === 'quan_lua_ong_rong') {
@@ -105,7 +121,13 @@ export class PaperdollRenderer {
       ctx.closePath();
       ctx.fill();
 
+      // Đổ bóng nếp lụa thân áo
+      ctx.fillStyle = 'rgba(22, 20, 38, 0.25)';
+      ctx.fillRect(centerX - 28, baseY - 140, 8, 90);
+      ctx.fillRect(centerX + 18, baseY - 120, 8, 70);
+
       // Cánh tay chẽn ôm dài
+      ctx.fillStyle = outfit.aoColor || '#4f3547';
       ctx.beginPath();
       ctx.moveTo(centerX - 24, baseY - 176);
       ctx.lineTo(centerX - 42, baseY - 115);
@@ -122,22 +144,34 @@ export class PaperdollRenderer {
       ctx.closePath();
       ctx.fill();
 
-      // Cổ đứng lập lĩnh cao 2-3cm
-      ctx.fillStyle = outfit.aoColor || '#4f3547';
-      ctx.fillRect(centerX - 10, baseY - 188, 20, 14);
-      ctx.strokeStyle = '#f7af34';
-      ctx.strokeRect(centerX - 10, baseY - 188, 20, 14);
+      // Viền cửa tay thêu chỉ vàng kim hoàng gia
+      ctx.fillStyle = '#fedb5b';
+      ctx.fillRect(centerX - 42, baseY - 116, 11, 2);
+      ctx.fillRect(centerX + 32, baseY - 111, 11, 2);
 
-      // Đường cài khuy cong sang sườn phải
-      ctx.strokeStyle = '#f7af34';
+      // Cổ đứng lập lĩnh cao 2-3cm có cổ nội trắng bên trong
+      ctx.fillStyle = '#f7edd7'; // Cổ nội trắng
+      ctx.fillRect(centerX - 10, baseY - 190, 20, 16);
+      ctx.fillStyle = outfit.aoColor || '#4f3547'; // Cổ đứng lập lĩnh
+      ctx.fillRect(centerX - 9, baseY - 188, 18, 14);
+      ctx.strokeStyle = '#fedb5b';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(centerX - 9, baseY - 188, 18, 14);
+
+      // Đường cài khuy cong sang sườn phải viền kim tuyến
+      ctx.strokeStyle = '#fedb5b';
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(centerX, baseY - 174);
       ctx.quadraticCurveTo(centerX + 14, baseY - 160, centerX + 18, baseY - 135);
-      ctx.lineTo(centerX + 18, baseY - 50);
+      ctx.lineTo(centerX + 18, baseY - 48);
       ctx.stroke();
 
-      // 5 Hạt khuy ngọc vàng kim
+      // Viền gấu vạt áo thêu hoa văn mây vàng kim
+      ctx.fillStyle = '#fedb5b';
+      ctx.fillRect(centerX - 34, baseY - 47, 68, 2.5);
+
+      // 5 Hạt khuy ngọc vàng kim (Ngũ Thường: Nhân, Nghĩa, Lễ, Trí, Tín)
       ctx.fillStyle = '#fedb5b';
       const buttonPoints = [
         { x: centerX, y: baseY - 180 },
@@ -148,11 +182,15 @@ export class PaperdollRenderer {
       ];
       buttonPoints.forEach((pt) => {
         ctx.beginPath();
-        ctx.arc(pt.x, pt.y, 2.5, 0, Math.PI * 2);
+        ctx.arc(pt.x, pt.y, 3, 0, Math.PI * 2);
         ctx.fill();
         ctx.strokeStyle = '#7a3d13';
         ctx.lineWidth = 1;
         ctx.stroke();
+        // Ánh sáng ngọc
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(pt.x - 1, pt.y - 1, 1.5, 1.5);
+        ctx.fillStyle = '#fedb5b';
       });
     } else if (outfit.ao === 'ao_dai_truyen_thong') {
       // Áo dài truyền thống 2 tà mềm mại
@@ -193,6 +231,107 @@ export class PaperdollRenderer {
         ctx.arc(centerX, y, 2, 0, Math.PI * 2);
         ctx.fill();
       }
+    } else if (outfit.ao === 'ao_tac') {
+      // Áo Tấc (Áo ngũ thân tay thụng buông dài quá một tấc)
+      ctx.fillStyle = outfit.aoColor || '#1c3b5e';
+      // Thân áo thụng buông dài
+      ctx.beginPath();
+      ctx.moveTo(centerX - 24, baseY - 176);
+      ctx.lineTo(centerX - 36, baseY - 40);
+      ctx.lineTo(centerX + 36, baseY - 40);
+      ctx.lineTo(centerX + 24, baseY - 176);
+      ctx.closePath();
+      ctx.fill();
+
+      // Tay áo thụng rộng rủ xuống quá bàn tay
+      ctx.beginPath();
+      ctx.moveTo(centerX - 24, baseY - 176);
+      ctx.lineTo(centerX - 52, baseY - 110);
+      ctx.lineTo(centerX - 38, baseY - 80);
+      ctx.lineTo(centerX - 18, baseY - 145);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.moveTo(centerX + 24, baseY - 176);
+      ctx.lineTo(centerX + 52, baseY - 110);
+      ctx.lineTo(centerX + 38, baseY - 80);
+      ctx.lineTo(centerX + 18, baseY - 145);
+      ctx.closePath();
+      ctx.fill();
+
+      // Cửa tay thụng lót lụa trắng
+      ctx.strokeStyle = '#f7edd7';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(centerX - 52, baseY - 110);
+      ctx.lineTo(centerX - 38, baseY - 80);
+      ctx.moveTo(centerX + 52, baseY - 110);
+      ctx.lineTo(centerX + 38, baseY - 80);
+      ctx.stroke();
+
+      // Cổ đứng lập lĩnh cao & cổ nội trắng
+      ctx.fillStyle = '#f7edd7';
+      ctx.fillRect(centerX - 10, baseY - 190, 20, 16);
+      ctx.fillStyle = outfit.aoColor || '#1c3b5e';
+      ctx.fillRect(centerX - 9, baseY - 188, 18, 14);
+      ctx.strokeStyle = '#fedb5b';
+      ctx.strokeRect(centerX - 9, baseY - 188, 18, 14);
+
+      // Đường cài khuy vạt phải & 5 hạt khuy ngọc vàng kim
+      ctx.strokeStyle = '#fedb5b';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(centerX, baseY - 174);
+      ctx.quadraticCurveTo(centerX + 14, baseY - 160, centerX + 18, baseY - 135);
+      ctx.lineTo(centerX + 18, baseY - 50);
+      ctx.stroke();
+
+      for (let i = 0; i < 5; i++) {
+        ctx.fillStyle = '#fedb5b';
+        ctx.fillRect(centerX + 8 + (i > 1 ? 9 : i * 4), baseY - 176 + i * 16, 3, 3);
+      }
+    } else if (outfit.ao === 'ao_nhat_binh') {
+      // Áo Nhật Bình cung đình triều Nguyễn (Cổ chữ nhật thêu phượng, tay áo ngũ sắc)
+      ctx.fillStyle = outfit.aoColor || '#a62424';
+      ctx.beginPath();
+      ctx.moveTo(centerX - 24, baseY - 176);
+      ctx.lineTo(centerX - 36, baseY - 42);
+      ctx.lineTo(centerX + 36, baseY - 42);
+      ctx.lineTo(centerX + 24, baseY - 176);
+      ctx.closePath();
+      ctx.fill();
+
+      // Ống tay xòe nhẹ
+      ctx.fillRect(centerX - 46, baseY - 176, 22, 65);
+      ctx.fillRect(centerX + 24, baseY - 176, 22, 65);
+
+      // Cửa tay áo ngũ sắc đại diện Ngũ Hành
+      const nhatBinhRainbow = ['#268c7e', '#fedb5b', '#ffffff', '#bf363b', '#40bfa3'];
+      nhatBinhRainbow.forEach((col, idx) => {
+        ctx.fillStyle = col;
+        ctx.fillRect(centerX - 46, baseY - 120 + idx * 3, 22, 3);
+        ctx.fillRect(centerX + 24, baseY - 120 + idx * 3, 22, 3);
+      });
+
+      // Cổ áo hình chữ nhật to bản viền vàng kim
+      ctx.fillStyle = '#fedb5b';
+      ctx.fillRect(centerX - 14, baseY - 188, 28, 45);
+      ctx.fillStyle = '#161426';
+      ctx.fillRect(centerX - 8, baseY - 188, 16, 36);
+
+      // Thêu hoa văn phượng mây xanh ngọc trên cổ áo
+      ctx.fillStyle = '#40bfa3';
+      ctx.fillRect(centerX - 12, baseY - 184, 3, 36);
+      ctx.fillRect(centerX + 9, baseY - 184, 3, 36);
+
+      // Cúc ngọc cài ngực kim hoàn
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(centerX, baseY - 150, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#fedb5b';
+      ctx.stroke();
     } else if (outfit.ao === 'ao_hai_day') {
       // Áo hai dây / cúp ngực (test vi phạm lăng tẩm)
       ctx.fillStyle = '#a83b6f';

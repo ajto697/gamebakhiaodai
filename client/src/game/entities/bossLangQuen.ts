@@ -32,8 +32,8 @@ export interface BossMinion {
 }
 
 export class BossLangQuen {
-  public x = 380;
-  public y = 185;
+  public x = 350;
+  public y = 200;
   public width = 110;
   public height = 110;
 
@@ -41,7 +41,18 @@ export class BossLangQuen {
   public hp = 300;
   public isDead = false;
 
-  // Máy trạng thái 3 pha
+  // Hiệu ứng nhận đòn & chớp trắng
+  public flashTimer = 0;
+  public hitCooldown = 0;
+
+  // Khiên Hiểu Lầm (Yêu cầu 3 & 4)
+  public shieldActive = true;
+  public shieldCrackedTimer = 0;
+  public shieldActiveTime = 0;
+  public shieldVibrateTimer = 0; // Khiên rung khi thẻ sai
+  public shieldRedTimer = 0;     // Khiên đỏ nhẹ khi thẻ sai
+
+  // Máy trạng thái 3 pha (Yêu cầu 6: 66% và 33%)
   public phase: 1 | 2 | 3 = 1;
   public state: 'idle' | 'attack_threads' | 'slam' | 'shield_web' | 'stun' | 'vanish' = 'idle';
   public stateTime = 0;
@@ -51,21 +62,25 @@ export class BossLangQuen {
   public threadTraps: BossThreadTrap[] = [];
   public threadMinions: BossMinion[] = [];
 
-  // Mạng nhện tối thượng ở Pha 3
+  // Mạng nhện bổ trợ ở Pha 3
   public webShieldActive = false;
   public webShieldHp = 50;
 
   // Lời thoại của boss
   public currentSpeech = 'Ta là BÓNG LÃNG QUÊN! Thời gian sẽ xóa nhòa tất cả!';
+  public speechTimer = 240;
 
   constructor() {}
 
+  /**
+   * Hurtbox của boss: chạm mặt đất (y = 200) hoặc tầm nhảy đánh
+   */
   public getHurtbox(): RectAABB {
     return {
-      x: this.x - 50,
-      y: this.y - 100,
-      width: 100,
-      height: 100,
+      x: this.x - 55,
+      y: this.y - 110,
+      width: 110,
+      height: 110,
     };
   }
 
@@ -79,33 +94,71 @@ export class BossLangQuen {
     if (this.isDead) return;
 
     this.stateTime++;
+    if (this.hitCooldown > 0) this.hitCooldown--;
+    if (this.flashTimer > 0) this.flashTimer--;
+    if (this.speechTimer > 0) this.speechTimer--;
+    if (this.shieldVibrateTimer > 0) this.shieldVibrateTimer--;
+    if (this.shieldRedTimer > 0) this.shieldRedTimer--;
+
+    // Đếm thời gian nứt khiên (3 giây = 180 frame) hoặc tích lũy thời gian khiên bật
+    if (this.shieldCrackedTimer > 0) {
+      this.shieldCrackedTimer--;
+      if (this.shieldCrackedTimer <= 0) {
+        this.shieldActive = true;
+        this.shieldActiveTime = 0;
+        particles.spawnFloatingText(this.x, this.y - 80, 'KHIÊN TÁI TẠO!', '#e88827');
+      }
+    } else if (this.shieldActive) {
+      this.shieldActiveTime++;
+    }
+
     const hpPercent = (this.hp / this.maxHp) * 100;
 
-    // Chuyển pha dựa trên % Lãng Quên
-    if (hpPercent <= 35 && this.phase < 3) {
+    // Chuyển pha dựa trên % Lãng Quên (Yêu cầu 5: boss gầm nhẹ, rung 10 khung, sợi chỉ bung ra)
+    if (hpPercent <= 33 && this.phase < 3) {
       this.phase = 3;
       this.webShieldActive = true;
-      this.webShieldHp = 60;
-      this.currentSpeech = 'TƠ NHỆN LÃNG QUÊN SẼ VÂY HÃM KÝ ỨC NGƯƠI!';
-      camera.triggerShake(6, 18);
-      particles.spawnFloatingText(this.x, this.y - 120, 'PHA 3: CUỒNG NỘ KÉN CHỈ!', '#bf363b');
-    } else if (hpPercent <= 70 && hpPercent > 35 && this.phase < 2) {
+      this.webShieldHp = difficulty === 'de' ? 40 : 60;
+      this.currentSpeech = 'KÉN NHỆN LÃNG QUÊN SẼ VÂY HÃM KÝ ỨC NGƯƠI!';
+      this.speechTimer = 220;
+      audio.playSpecialSkill();
+      camera.triggerShake(3.2, 10); // Rung 10 khung
+      particles.spawnThreadBurst(this.x, this.y - 45, 24); // Sợi chỉ bung ra
+      particles.spawnFloatingText(this.x, this.y - 120, 'PHA 3', '#bf363b');
+    } else if (hpPercent <= 66 && hpPercent > 33 && this.phase < 2) {
       this.phase = 2;
       this.currentSpeech = 'MỘT KHI ĐỨT CHỈ, ÁO SẼ RỜI TỪNG MẢNH!';
-      camera.triggerShake(4, 14);
-      particles.spawnFloatingText(this.x, this.y - 120, 'PHA 2: GIĂNG BẪY TƠ RỐI!', '#e88827');
+      this.speechTimer = 220;
+      audio.playSpecialSkill();
+      camera.triggerShake(3.2, 10); // Rung 10 khung
+      particles.spawnThreadBurst(this.x, this.y - 45, 20); // Sợi chỉ bung ra
+      particles.spawnFloatingText(this.x, this.y - 120, 'PHA 2', '#e88827');
     }
 
     // 1. Máy trạng thái hành động
     if (this.state === 'vanish') {
+      if (this.stateTime === 1) {
+        audio.playBossDissolve();
+        // Yêu cầu 5: Chậm hình 0.5 giây, sợi chỉ bay tung tóe và tan thành hạt vàng, màn sáng dần
+        camera.triggerSlowMotion(30);
+        particles.spawnGoldenThreadDissolve(this.x, this.y - 45, 35);
+        particles.spawnThreadBurst(this.x, this.y - 45, 20);
+        camera.triggerImpactFlash(0.24);
+      }
       if (this.stateTime % 2 === 0) {
         particles.spawnHitSparks(
           this.x + (Math.random() - 0.5) * 80,
           this.y - 50 + (Math.random() - 0.5) * 60,
-          4
+          6
+        );
+        particles.spawnThreadTrail(
+          this.x + (Math.random() - 0.5) * 40,
+          this.y - 40,
+          '#fedb5b'
         );
       }
-      if (this.stateTime > 80) {
+      // Yêu cầu 7: Tan biến đúng 4 khung hình
+      if (this.stateTime >= 4) {
         this.isDead = true;
       }
       return;
@@ -117,7 +170,6 @@ export class BossLangQuen {
         this.stateTime = 0;
       }
     } else if (this.state === 'idle') {
-      // Đứng thở và nhấp nhô
       this.attackCooldown--;
       if (this.attackCooldown <= 0) {
         this.decideNextAttack(player, difficulty);
@@ -129,7 +181,7 @@ export class BossLangQuen {
         this.threadMinions.push({
           x: this.x - 50,
           y: this.y - 30,
-          vx: -3.6,
+          vx: difficulty === 'de' ? -2.8 : -3.8,
           hp: 1,
           life: 90,
         });
@@ -137,10 +189,10 @@ export class BossLangQuen {
       }
       if (this.stateTime > 40) {
         this.state = 'idle';
-        this.attackCooldown = 50;
+        this.attackCooldown = difficulty === 'de' ? 70 : 50;
       }
     } else if (this.state === 'slam') {
-      // Pha 2: Dậm đất tạo sóng xung kích và bẫy tơ chỉ
+      // Pha 2 & 3: Dậm đất tạo sóng xung kích và bẫy tơ chỉ
       if (this.stateTime === 15) {
         camera.triggerShake(6, 15);
         audio.playHitImpact();
@@ -154,12 +206,12 @@ export class BossLangQuen {
           y: 195,
           width: 40,
           height: 10,
-          life: 140,
+          life: difficulty === 'de' ? 90 : 140,
         });
       }
       if (this.stateTime > 45) {
         this.state = 'idle';
-        this.attackCooldown = 45;
+        this.attackCooldown = difficulty === 'de' ? 65 : 45;
       }
     }
 
@@ -181,13 +233,14 @@ export class BossLangQuen {
     }
 
     // 3. Cập nhật bẫy tơ chỉ trên sàn (làm chậm và rút Ký Ức nếu dẫm phải)
+    const trapDamageTick = difficulty === 'de' ? 45 : 25;
     for (let i = this.threadTraps.length - 1; i >= 0; i--) {
       const trap = this.threadTraps[i];
       trap.life--;
       const trapBox: RectAABB = { x: trap.x, y: trap.y, width: trap.width, height: trap.height };
       if (checkAABB(trapBox, player.getHurtbox())) {
-        player.vx *= 0.4; // Làm dính chân
-        if (this.stateTime % 30 === 0) {
+        player.vx *= 0.4;
+        if (this.stateTime % trapDamageTick === 0) {
           player.takeDamage(1, trap.x, audio, camera, particles);
         }
       }
@@ -196,43 +249,50 @@ export class BossLangQuen {
       }
     }
 
-    // 4. Nhận sát thương từ đòn đánh của người chơi
+    // 4. Yêu cầu 1: Đòn J (combo 3) gây sát thương lên boss khi trúng hitbox (mỗi đòn chỉ tính 1 lần)
     const playerAttack = player.getAttackHitbox();
-    if (playerAttack && checkAABB(this.getHurtbox(), playerAttack)) {
+    if (playerAttack && !player.hasHitEnemyThisAttack && this.hitCooldown <= 0 && checkAABB(this.getHurtbox(), playerAttack)) {
+      player.hasHitEnemyThisAttack = true;
       const isFinisher = player.state === 'attack_3';
-      const dmg = isFinisher ? 25 : 12;
-      this.takeDamage(dmg, player.x, particles, audio, camera, player, isFinisher);
+      const comboStep = player.comboStep || (isFinisher ? 3 : (player.state === 'attack_2' ? 2 : 1));
+      const baseDmg = isFinisher ? 45 : (comboStep === 2 ? 30 : 20);
+      this.hitCooldown = 12; // Khóa nhịp nhận đòn
+      this.takeDamage(baseDmg, player.x, particles, audio, camera, player, isFinisher, comboStep);
     }
 
-    // 5. Nhận sát thương từ phi đạn kim chỉ ("NÉM KIM CHỈ!!")
+    // 5. Yêu cầu 1: Chiêu K (ném kim chỉ) gây sát thương lên boss
     for (let i = player.projectiles.length - 1; i >= 0; i--) {
       const p = player.projectiles[i];
       const pBox: RectAABB = { x: p.x - p.width / 2, y: p.y - p.height / 2, width: p.width, height: p.height };
       if (checkAABB(this.getHurtbox(), pBox)) {
-        // Chiêu Kim Chỉ phá tan kén nhện ở Pha 3!
         if (this.webShieldActive) {
           this.webShieldHp -= p.damage;
           if (this.webShieldHp <= 0) {
             this.webShieldActive = false;
             particles.spawnFloatingText(this.x, this.y - 80, 'KÉN NHỆN ĐÃ ĐỨT!', '#40bfa3');
-            camera.triggerShake(5, 12);
+            camera.triggerHitStop(5);
+            camera.triggerShake(6, 16);
+            camera.triggerImpactFlash(0.35);
+            particles.spawnSlashHitVisual(this.x - 20, this.y - 60, true, 3, false);
+            this.currentSpeech = 'A! Mũi kim chỉ xé toạc kén nhện của ta rồi!';
+            this.speechTimer = 180;
           }
         }
-        this.takeDamage(p.damage, p.x, particles, audio, camera, player, true);
+        this.takeDamage(p.damage, p.x, particles, audio, camera, player, true, 3);
         player.projectiles.splice(i, 1);
       }
     }
   }
 
-  private decideNextAttack(player: Player, _difficulty: string): void {
+  private decideNextAttack(player: Player, difficulty: string): void {
     this.stateTime = 0;
+    const isEasy = difficulty === 'de';
     if (this.phase === 1) {
       this.state = 'attack_threads';
     } else if (this.phase === 2) {
       this.state = Math.random() > 0.5 ? 'slam' : 'attack_threads';
     } else {
-      // Pha 3: xen kẽ bão tơ chỉ và dậm đất
-      this.state = Math.random() > 0.4 ? 'slam' : 'attack_threads';
+      this.state = Math.random() > (isEasy ? 0.6 : 0.4) ? 'slam' : 'attack_threads';
     }
   }
 
@@ -243,54 +303,133 @@ export class BossLangQuen {
     audio: AudioManager,
     camera: GameCamera,
     player: Player,
-    isFinisher: boolean
+    isFinisher: boolean,
+    comboStep = 1
   ): void {
-    // Nếu kén nhện đang bọc ở Pha 3 -> Giảm 75% sát thương thường
-    const finalDmg = this.webShieldActive ? Math.max(3, Math.floor(dmg * 0.25)) : dmg;
+    if (this.state === 'vanish') return;
 
-    this.hp -= finalDmg;
-    audio.playHitImpact();
-    camera.triggerHitStop(isFinisher ? 5 : 3);
-    camera.triggerShake(isFinisher ? 5 : 2, 8);
+    // Yêu cầu 2 & 3: Phản hồi khi trúng & Khiên Hiểu Lầm
+    // Khi khiên bật: chỉ nhận 1 sát thương tượng trưng và hiện "KHIÊN!"
+    // Khi khiên nứt (trong 3 giây): nhận sát thương cực lớn
+    const hasShield = this.shieldActive;
+    let finalDmg = 1;
 
-    particles.spawnHitSparks(this.x - 20, this.y - 60, isFinisher ? 14 : 7);
-    particles.spawnFloatingText(
-      this.x - 20,
-      this.y - 80,
-      this.webShieldActive ? 'KÉN GIẢM SÁT THƯƠNG!' : `-${finalDmg}`,
-      this.webShieldActive ? '#ba5e1b' : '#fedb5b'
-    );
+    if (hasShield) {
+      finalDmg = 1;
+      this.flashTimer = 2; // Chớp trắng boss 2 khung (Yêu cầu 1)
+      camera.triggerHitStop(3); // Hit-stop 3 khung
+      camera.triggerDirectionalShake(fromX < this.x ? 1 : -1, 0, 1.8, 5);
+      audio.playHitImpact();
+      particles.spawnHitSparks(this.x - 10, this.y - 45, 6);
+      particles.spawnFloatingText(this.x - 10, this.y - 75, 'KHIÊN! -1', '#e88827');
+    } else {
+      // Khiên đang nứt: sát thương lớn
+      const multiplier = this.shieldCrackedTimer > 0 ? 1.5 : 1.0;
+      finalDmg = Math.round(dmg * multiplier);
+      this.flashTimer = 2; // Chớp trắng boss 2 khung (Yêu cầu 1)
+      camera.triggerHitStop(isFinisher ? 5 : (comboStep === 2 ? 4 : 3)); // Hit-stop 3-5 khung (Yêu cầu 1)
+      audio.playHitImpact();
+
+      // Đẩy lùi boss có giảm tốc
+      const knockDir = fromX < this.x ? 1 : -1;
+      this.x = Math.max(220, Math.min(420, this.x + knockDir * (isFinisher ? 8 : 4)));
+
+      // Hạt tia sáng (6-10 hạt) và vệt chém (3 khung)
+      particles.spawnHitSparks(this.x - 20, this.y - 50, isFinisher ? 10 : 8, knockDir);
+      particles.spawnSlashHitVisual(this.x - 20, this.y - 50, isFinisher, comboStep, player.flipX);
+      camera.triggerDirectionalShake(knockDir, 0, isFinisher ? 3.5 : 2.5, isFinisher ? 8 : 6);
+      camera.triggerImpactFlash(isFinisher ? 0.22 : 0.12);
+
+      // Số sát thương nhỏ nổi lên
+      particles.spawnFloatingText(this.x - 10, this.y - 85, `-${finalDmg}`, '#fedb5b');
+    }
+
+    this.hp = Math.max(0, this.hp - finalDmg);
+
+    // Cập nhật câu thoại khi bị đánh trúng
+    if (Math.random() < 0.45 && this.speechTimer <= 80) {
+      const hitQuotes = [
+        'Ugh... Đòn đánh này sao chứa chan ký ức xưa?!',
+        'Ngươi dám xé rách bụi mờ thời gian sao?!',
+        'Chỉ may của ta... không thể đứt dễ dàng thế này!',
+        'Đừng hòng nhắc ta nhớ lại tà áo cũ!',
+      ];
+      this.currentSpeech = hitQuotes[Math.floor(Math.random() * hitQuotes.length)];
+      this.speechTimer = 160;
+    }
 
     player.onHitEnemy(particles, isFinisher);
 
-    // Khi Lãng Quên về 0 -> Tỉnh ngộ và tan biến trong hào quang
-    if (this.hp <= 0 && this.state !== 'vanish') {
+    // Khi Lãng Quên về 0 -> Tỉnh ngộ và tan biến trong 4 khung hình
+    if (this.hp <= 0) {
       this.hp = 0;
       this.state = 'vanish';
       this.stateTime = 0;
       this.currentSpeech = 'A... Ta nhớ ra rồi! Tà áo xưa... đẹp đẽ biết bao...';
-      camera.triggerShake(6, 25);
+      this.speechTimer = 240;
+      camera.triggerHitStop(5);
+      camera.triggerShake(3.5, 12);
+      camera.triggerImpactFlash(0.24);
       particles.spawnFloatingText(this.x, this.y - 100, 'BÓNG LÃNG QUÊN ĐÃ TỈNH NGỘ!', '#77e0b5');
     }
   }
 
   /**
-   * Ném Thẻ Sự Thật vào Boss Bóng Lãng Quên để hóa giải bùa lãng quên
+   * Ném Thẻ Sự Thật vào Boss Bóng Lãng Quên (Yêu cầu 4)
+   * - Thẻ đúng: khiên nứt vỡ thành mảnh, phát sáng teal, kèm sóng xung kích, phát hợp âm sáng & vỡ khiên
+   * - Thẻ sai: khiên rung và đỏ nhẹ, nốt trầm ngắn dịu dàng, không âm thanh gây khó chịu
    */
-  public hitByTruthCard(isCorrect: boolean, particles: ParticleSystem, camera: GameCamera): void {
+  public hitByTruthCard(
+    isCorrect: boolean,
+    particles: ParticleSystem,
+    camera: GameCamera,
+    audio?: AudioManager
+  ): void {
     if (this.state === 'vanish') return;
 
     if (isCorrect) {
-      // Trừ 50 Lãng Quên và phá kén nhện
-      this.hp = Math.max(0, this.hp - 50);
+      // THẺ ĐÚNG: Hợp âm sáng + Khiên nứt vỡ thành mảnh
+      if (audio) {
+        audio.playTruthCardCorrect();
+        audio.playShieldBreak();
+      }
+      this.shieldActive = false;
+      this.shieldCrackedTimer = 180; // 3 giây (180 frame) chịu sát thương lớn
       this.webShieldActive = false;
+      this.hp = Math.max(0, this.hp - 60);
       this.state = 'stun';
       this.stateTime = 0;
-      camera.triggerShake(6, 16);
-      particles.spawnHitSparks(this.x, this.y - 60, 20);
-      particles.spawnFloatingText(this.x, this.y - 90, 'THẺ SỰ THẬT TỎA SÁNG!', '#77e0b5');
+      this.flashTimer = 2; // Chớp trắng 2 khung
+      camera.triggerHitStop(4); // Hit-stop 4 khung
+      camera.triggerDirectionalShake(0, -1, 3.5, 8);
+      camera.triggerImpactFlash(0.24);
+      particles.spawnShieldShards(this.x, this.y - 50, 16, '#77e0b5');
+      particles.spawnImpactShockwave(this.x, this.y - 50, '#77e0b5', 42);
+      particles.spawnFloatingText(this.x - 20, this.y - 90, 'KHIÊN NỨT! -60 LÃNG QUÊN', '#77e0b5');
+      this.currentSpeech = 'Đạo lý tà áo... khiên hiểu lầm của ta đã vỡ tan!';
+      this.speechTimer = 200;
+
+      if (this.hp <= 0) {
+        this.hp = 0;
+        this.state = 'vanish';
+        this.stateTime = 0;
+        if (audio) audio.playBossDissolve();
+        this.currentSpeech = 'A... Ta nhớ ra rồi! Tà áo xưa... đẹp đẽ biết bao...';
+        this.speechTimer = 240;
+        camera.triggerHitStop(5);
+        camera.triggerShake(3.5, 12);
+        camera.triggerImpactFlash(0.24);
+      }
     } else {
-      particles.spawnFloatingText(this.x, this.y - 90, 'LÃNG QUÊN CHƯA DỨT!', '#ba5e1b');
+      // THẺ SAI: Nốt trầm ngắn, không âm thanh gây khó chịu (Yêu cầu 1 & 4)
+      if (audio) audio.playTruthCardWrong();
+      this.shieldVibrateTimer = 14;
+      this.shieldRedTimer = 14;
+      this.attackCooldown = Math.max(15, this.attackCooldown - 15);
+      camera.triggerShake(1.5, 5); // Rung nhẹ
+      particles.spawnFloatingText(this.x - 20, this.y - 90, 'NGỘ NHẬN! KHIÊN RUNG', '#bf363b');
+      this.currentSpeech = 'Ha ha! Đó chỉ là ngộ nhận của người đời mà thôi!';
+      this.speechTimer = 180;
     }
   }
 }

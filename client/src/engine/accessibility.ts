@@ -7,13 +7,16 @@
  */
 
 export interface AccessibilitySettings {
-  reduceMotion: boolean;      // Giảm chuyển động (tắt camera shake, tắt speed lines)
+  reduceMotion: boolean;      // Giảm chuyển động (tắt camera shake, tắt speed lines, tắt bloom mạnh)
   highContrast: boolean;      // Chế độ tương phản cao cho người thị lực yếu
   largeText: boolean;         // Chữ to dễ đọc
   difficulty: 'de' | 'thuong';// Độ khó (Dễ: nhiều máu, quái chậm; Thường: chuẩn mực)
   virtualControls: boolean;   // Phím ảo trên màn hình
-  volume: number;             // Âm lượng tổng (0 - 100%)
-  muted: boolean;             // Tắt âm thanh toàn cục
+  volume: number;             // Âm lượng tổng (0 - 100%, mặc định 60%)
+  muted: boolean;             // Tắt âm thanh toàn cục (Master Mute)
+  musicMuted: boolean;        // Tùy chọn riêng: Tắt nhạc nền (BGM Mute)
+  weatherEffects: boolean;    // Hiệu ứng thời tiết (Mưa bụi / Cánh hoa / Đom đóm pixel)
+  postProcessingBloom: boolean;// Hậu kỳ nhẹ: Bloom vùng sáng & Vignette nhẹ (mặc định BẬT)
 }
 
 const STORAGE_KEY = 'tam_phuc_ky_a11y_settings';
@@ -26,8 +29,11 @@ export class AccessibilityManager {
     largeText: false,
     difficulty: 'thuong',
     virtualControls: true,
-    volume: 75,
+    volume: 60,
     muted: false,
+    musicMuted: false,
+    weatherEffects: true,
+    postProcessingBloom: true,
   };
 
   private listeners: Array<(s: AccessibilitySettings) => void> = [];

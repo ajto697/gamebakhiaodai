@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "tsx server.ts",
-    "test": "tsx tests/run-tests.ts",
+    "test": "tsx tests/run-tests.ts && tsx tests/boss-simulation.test.ts && tsx tests/chapters-data.test.ts && tsx tests/proof-scenes.test.ts",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
